@@ -1,0 +1,323 @@
+//===== rAthena Script =======================================
+//= Euphy's Quest Shop
+//===== By: ==================================================
+//= Euphy
+//===== Update Costumemaker By: ==================================================
+//= Boy
+//===== Current Version: =====================================
+//= 1.4a
+//===== Compatible With: =====================================
+//= rAthena SVN r15340+
+//===== Description: =========================================
+//= A dynamic quest shop based on Lunar's, with easier config.
+//= Includes support for multiple shops & cashpoints.
+//= Item Preview script by ToastOfDoom.
+//============================================================
+				
+payon,236,199,3	script	Leablem#1	86,{
+	mes "[^FF6600Leablem^000000]";
+	mes "Hello, I am Leablem.";
+	mes "I sell high quality armors.";
+	mes "Do you want to see the list ?";
+	next;
+	switch( select( "Yes.:No." ) ) {
+case 1: 		
+	mes "[^FF6600Leablem^000000]";
+	mes "Which one ?";
+	next;
+	switch( select( "C Class.:B Class.:A Class.:S Class.:Cancel." ) ) {
+		case 1:
+			callshop "Leablem1",1;
+			end;
+		case 2:
+			callshop "Leablem2",1;
+			end;	
+		case 3:
+			callshop "Leablem3",1;
+			end;	
+		case 4:
+			callshop "Leablem4",1;
+			end;
+		case 5:
+			mes "[^FF6600Leablem^000000]";
+			mes "Okay, see you again.";
+			close;
+	}	
+case 2: 	
+	mes "[^FF6600Leablem^000000]";
+    mes "Okay, see you again.";
+   	close;
+	}
+}
+
+// =====================================================
+lighthalzen,96,137,3	script	Leablem#2	86,{
+	mes "[^FF6600Leablem^000000]";
+	mes "Hello, I am Leablem.";
+	mes "I sell high quality armors.";
+	mes "Do you want to see the list ?";
+	next;
+	switch( select( "Yes.:No." ) ) {
+case 1: 		
+	mes "[^FF6600Leablem^000000]";
+	mes "Which one ?";
+	next;
+	switch( select( "C Class.:B Class.:A Class.:S Class.:Cancel." ) ) {
+		case 1:
+			callshop "Leablem1",1;
+			end;
+		case 2:
+			callshop "Leablem2",1;
+			end;	
+		case 3:
+			callshop "Leablem3",1;
+			end;	
+		case 4:
+			callshop "Leablem4",1;
+			end;
+		case 5:
+			mes "[^FF6600Leablem^000000]";
+			mes "Okay, see you again.";
+			close;
+	}	
+case 2: 	
+	mes "[^FF6600Leablem^000000]";
+    mes "Okay, see you again.";
+   	close;
+	}
+}
+
+//================================================================================
+
+// =====================================================
+prt_in,22,60,6	script	Leablem#3	86,{
+	mes "[^FF6600Leablem^000000]";
+	mes "Hello, I am Leablem.";
+	mes "I sell high quality armors.";
+	mes "Do you want to see the list ?";
+	next;
+	switch( select( "Yes.:No." ) ) {
+case 1: 		
+	mes "[^FF6600Leablem^000000]";
+	mes "Which one ?";
+	next;
+	switch( select( "C Class.:B Class.:A Class.:S Class.:Cancel." ) ) {
+		case 1:
+			callshop "Leablem1",1;
+			end;
+		case 2:
+			callshop "Leablem2",1;
+			end;	
+		case 3:
+			callshop "Leablem3",1;
+			end;	
+		case 4:
+			callshop "Leablem4",1;
+			end;
+		case 5:
+			mes "[^FF6600Leablem^000000]";
+			mes "Okay, see you again.";
+			close;
+	}	
+case 2: 	
+	mes "[^FF6600Leablem^000000]";
+    mes "Okay, see you again.";
+   	close;
+	}
+}
+
+//================================================================================
+
+// =====================================================
+morocc,270,159,3	script	Leablem#4	86,{
+	mes "[^FF6600Leablem^000000]";
+	mes "Hello, I am Leablem.";
+	mes "I sell high quality armors.";
+	mes "Do you want to see the list ?";
+	next;
+	switch( select( "Yes.:No." ) ) {
+case 1: 		
+	mes "[^FF6600Leablem^000000]";
+	mes "Which one ?";
+	next;
+	switch( select( "C Class.:B Class.:A Class.:S Class.:Cancel." ) ) {
+		case 1:
+			callshop "Leablem1",1;
+			end;
+		case 2:
+			callshop "Leablem2",1;
+			end;	
+		case 3:
+			callshop "Leablem3",1;
+			end;	
+		case 4:
+			callshop "Leablem4",1;
+			end;
+		case 5:
+			mes "[^FF6600Leablem^000000]";
+			mes "Okay, see you again.";
+			close;
+	}	
+case 2: 	
+	mes "[^FF6600Leablem^000000]";
+    mes "Okay, see you again.";
+   	close;
+	}
+}
+
+//================================================================================
+
+// ===============================================================================
+
+payon,140,151,5	script	Seiyablem#1	84,{
+	mes "[^FF6600Seiyablem^000000]";
+	mes "Hello, I am Seiyablem.";
+	mes "I sell high quality weapons.";
+	mes "Do you want to see the list ?";
+	next;
+	switch( select( "Yes.:No." ) ) {
+case 1: 		
+	mes "[^FF6600Seiyablem^000000]";
+	mes "Which one ?";
+	next;
+	switch( select( "C Class.:B Class.:A Class.:S Class.:Cancel." ) ) {
+		case 1:
+			callshop "Seiyablem1",1;
+			end;
+		case 2:
+			callshop "Seiyablem2",1;
+			end;	
+		case 3:
+			callshop "Seiyablem3",1;
+			end;	
+		case 4:
+			callshop "Seiyablem4",1;
+			end;
+		case 5:
+			mes "[^FF6600Seiyablem^000000]";
+			mes "Okay, see you again.";
+			close;
+	}	
+case 2: 	
+	mes "[^FF6600Seiyablem^000000]";
+    mes "Okay, see you again.";
+   	close;
+	}
+}
+
+// ===============================================================================
+
+
+lhz_in02,281,35,5	script	Seiyablem#2	84,{
+	mes "[^FF6600Seiyablem^000000]";
+	mes "Hello, I am Seiyablem.";
+	mes "I sell high quality weapons.";
+	mes "Do you want to see the list ?";
+	next;
+	switch( select( "Yes.:No." ) ) {
+case 1: 		
+	mes "[^FF6600Seiyablem^000000]";
+	mes "Which one ?";
+	next;
+	switch( select( "C Class.:B Class.:A Class.:S Class.:Cancel." ) ) {
+		case 1:
+			callshop "Seiyablem1",1;
+			end;
+		case 2:
+			callshop "Seiyablem2",1;
+			end;	
+		case 3:
+			callshop "Seiyablem3",1;
+			end;	
+		case 4:
+			callshop "Seiyablem4",1;
+			end;
+		case 5:
+			mes "[^FF6600Seiyablem^000000]";
+			mes "Okay, see you again.";
+			close;
+	}	
+case 2: 	
+	mes "[^FF6600Seiyablem^000000]";
+    mes "Okay, see you again.";
+   	close;
+	}
+}
+
+// ===============================================================================
+
+prt_in,33,71,5	script	Seiyablem#3	84,{
+	mes "[^FF6600Seiyablem^000000]";
+	mes "Hello, I am Seiyablem.";
+	mes "I sell high quality weapons.";
+	mes "Do you want to see the list ?";
+	next;
+	switch( select( "Yes.:No." ) ) {
+case 1: 		
+	mes "[^FF6600Seiyablem^000000]";
+	mes "Which one ?";
+	next;
+	switch( select( "C Class.:B Class.:A Class.:S Class.:Cancel." ) ) {
+		case 1:
+			callshop "Seiyablem1",1;
+			end;
+		case 2:
+			callshop "Seiyablem2",1;
+			end;	
+		case 3:
+			callshop "Seiyablem3",1;
+			end;	
+		case 4:
+			callshop "Seiyablem4",1;
+			end;
+		case 5:
+			mes "[^FF6600Seiyablem^000000]";
+			mes "Okay, see you again.";
+			close;
+	}	
+case 2: 	
+	mes "[^FF6600Seiyablem^000000]";
+    mes "Okay, see you again.";
+   	close;
+	}
+}
+
+// ===============================================================================
+
+morocc,51,41,4	script	Seiyablem#4	84,{
+	mes "[^FF6600Seiyablem^000000]";
+	mes "Hello, I am Seiyablem.";
+	mes "I sell high quality weapons.";
+	mes "Do you want to see the list ?";
+	next;
+	switch( select( "Yes.:No." ) ) {
+case 1: 		
+	mes "[^FF6600Seiyablem^000000]";
+	mes "Which one ?";
+	next;
+	switch( select( "C Class.:B Class.:A Class.:S Class.:Cancel." ) ) {
+		case 1:
+			callshop "Seiyablem1",1;
+			end;
+		case 2:
+			callshop "Seiyablem2",1;
+			end;	
+		case 3:
+			callshop "Seiyablem3",1;
+			end;	
+		case 4:
+			callshop "Seiyablem4",1;
+			end;
+		case 5:
+			mes "[^FF6600Seiyablem^000000]";
+			mes "Okay, see you again.";
+			close;
+	}	
+case 2: 	
+	mes "[^FF6600Seiyablem^000000]";
+    mes "Okay, see you again.";
+   	close;
+	}
+}
+
+// ===============================================================================

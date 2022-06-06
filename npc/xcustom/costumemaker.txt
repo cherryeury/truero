@@ -1,0 +1,384 @@
+//===== rAthena Script =======================================
+//= Euphy's Quest Shop
+//===== By: ==================================================
+//= Euphy
+//===== Current Version: =====================================
+//= 1.6c
+//===== Compatible With: =====================================
+//= rAthena Project
+//===== Description: =========================================
+//= A dynamic quest shop based on Lunar's, with easier config.
+//= Includes support for multiple shops & cashpoints.
+//= Item Preview script by ToastOfDoom.
+//===== Additional Comments: =================================
+//= 1.0 Initial script.
+//= 1.2 Added category support.
+//= 1.3 More options and fixes.
+//= 1.4 Added debug settings.
+//= 1.5 Replaced categories with shop IDs.
+//= 1.6 Added support for purchasing stackables.
+//= 1.6a Added support for previewing costumes and robes.
+//= 1.6b Added 'disable_items' command.
+//= 1.6c Replaced function 'A_An' with "F_InsertArticle".
+//============================================================
+
+// Shop NPCs -- supplying no argument displays entire menu.
+//	callfunc "kwhshop"{,<shop ID>{,<shop ID>{,...}}};
+//  ADD YOUR NPC HERE
+//============================================================
+moc_para01,41,167,5	script	Kyewolhyang	77,{ callfunc "kwhshop",1,2,3,4,5,6; }
+//moc_para01,41,165,5	script	Eurynome	76,{ callfunc "kwhshop",7,8,9,10; }	// call the shop 1 and 2 defined below
+// etc.. Add your Shop NPCs 'Quest Shop#XXX' here
+//============================================================
+
+
+// Script Core - DO NOT DUPLICATE THIS NPC !!!!!!!!!!!!!
+//============================================================
+-	script	quest_shop	-1,{
+function Add; function Chk; function Slot;
+OnInit:
+	freeloop(1);
+
+// -----------------------------------------------------------
+//  Basic shop settings.
+// -----------------------------------------------------------
+
+	set .Announce,0;	// Announce quest completion? (1: yes / 0: no)
+	set .ShowSlot,1;	// Show item slots? (2: all equipment / 1: if slots > 0 / 0: never)
+	set .ShowID,0;  	// Show item IDs? (1: yes / 0: no)
+	set .ShowZeny,1;	// Show Zeny cost, if any? (1: yes / 0: no)
+	set .MaxStack,1;	// Max number of quest items purchased at one time.
+
+// -----------------------------------------------------------
+//  Points variable -- optional quest requirement.
+//	setarray .Points$[0],"<variable name>","<display name>";
+// -----------------------------------------------------------
+
+	setarray .Points$[0],
+		"#CASHPOINTS", "Cash Points";
+
+
+//=====================================================================================
+// ------------------- ADD YOUR SHOPS NAME AND ITEMS SHOPS STARTING HERE --------------
+//=====================================================================================
+
+// -----------------------------------------------------------
+//  Shop IDs -- to add shops, copy dummy data at bottom of file.
+//	setarray .Shops$[1],"<Shop 1>","<Shop 2>"{,...};
+// -----------------------------------------------------------
+
+	setarray .Shops$[1],
+		"Upper HG 1",	// 
+		"Upper HG 2",	//
+		"Upper HG 3",	//
+		"Upper HG 4",	//
+		"Upper HG 5",	//
+		"Other";	//	
+
+// -----------------------------------------------------------
+//  Quest items -- do NOT use a reward item more than once!
+//	Add(<shop ID>,<reward ID>,<reward amount>,
+//	    <Zeny cost>,<point cost>,
+//	    <required item ID>,<required item amount>{,...});
+// -----------------------------------------------------------
+	
+	//Costumes
+	Add(1,19791,1,0,0,5086,1,6242,500,6625,300); // Alarm Mask
+	Add(1,19939,1,0,0,2284,1,6242,500,6625,300); // Antler
+	Add(1,20388,1,0,0,5174,1,6242,500,6625,300); // Ayam
+	Add(1,31035,1,0,0,5021,1,6242,500,6625,300); // Bankruptcy for The heart
+	Add(1,19845,1,0,0,5042,1,6242,500,6625,300); // Bao Bao
+	Add(1,20119,1,0,0,5076,1,6242,500,6625,300); // Beanie
+	Add(1,20004,1,0,0,5091,1,6242,750,6625,300); // Big Golden Bell
+	Add(1,20157,1,0,0,5065,1,6242,500,6625,300); // Blue Fish
+	Add(1,20159,1,0,0,5052,1,6242,500,6625,300); // Blue Hairband
+	Add(1,20056,1,0,0,5436,1,6242,500,6625,300); // Bride's Corolla
+	Add(1,31128,1,0,0,5169,1,6242,750,6625,300); // Bride Mask
+//	Add(1,20157,1,0,0,5065,1,6242,500,6625,300); // Blue Fish
+	Add(1,20159,1,0,0,5052,1,6242,500,6625,300); // Blue Hairband
+	Add(1,20275,1,0,0,5034,1,6242,500,6625,300); // Bulb Headband
+	Add(1,19625,1,0,0,2214,1,6242,500,6625,300); // Bunny Band
+	Add(1,19545,1,0,0,5016,1,6242,500,6625,300); // Boy's Cap
+	
+	Add(2,20118,1,0,0,5024,1,6242,500,6625,300); // Cake Hat
+	Add(2,20445,1,0,0,5028,1,6242,500,6625,300); // Candle
+	Add(2,31471,1,0,0,5437,1,6242,500,6625,300); // Celestial Flower
+	Add(2,20245,1,0,0,5446,1,6242,500,6625,300); // Catfoot Hairpin
+//	Add(2,19951,1,0,0,5449,1,6242,500,6625,300); // Cardboard Box
+	Add(2,20013,1,0,0,5026,1,6242,500,6625,300); // Chef Hat
+	Add(2,19582,1,0,0,5075,1,6242,500,6625,300); // Cowboy Hat
+	Add(2,19622,1,0,0,5048,1,6242,500,6625,300); // Crescent Hairpin
+	Add(2,20261,1,0,0,5036,1,6242,500,6625,300); // Cross Hat
+	Add(2,20454,1,0,0,5080,1,6242,500,6625,300); // Crown of Ancient Queen
+	Add(2,19786,1,0,0,5081,1,6242,500,6625,300); // Crown of Mistress
+	Add(2,20276,1,0,0,5082,1,6242,500,6625,300); // Decorative Mushroom
+	Add(2,19547,1,0,0,5038,1,6242,500,6625,300); // Deviruchi
+	Add(2,31113,1,0,0,2273,1,6242,500,6625,300); // Doctor Band
+	Add(2,19782,1,0,0,5058,1,6242,500,6625,300); // Drooping Cat
+	Add(2,19941,1,0,0,2283,1,6242,500,6625,300); // Ear Muffs
+	Add(2,19854,1,0,0,5057,1,6242,500,6625,300); // Ears of Black Cat
+	Add(2,20185,1,0,0,5047,1,6242,500,6625,300); // Fashionable Glasses
+	Add(2,19585,1,0,0,5170,1,6242,500,6625,300); // Feather Beret
+	Add(2,20057,1,0,0,5018,1,6242,500,6625,300); // Feather Bonnet
+	Add(2,19983,1,0,0,5061,1,6242,500,6625,300); // Flower Hairpin
+	Add(2,19548,1,0,0,5447,1,6242,500,6625,300); // Frog Hat
+	Add(2,20049,1,0,0,5063,1,6242,500,6625,300); // Giant Band Aid
+	
+	Add(3,19628,1,0,0,5001,1,6242,500,6625,300); // Headset	
+	Add(3,19861,1,0,0,5041,1,6242,500,6625,300); // Heart Hairpin
+	Add(3,20472,1,0,0,5025,1,6242,500,6625,300); // Helm of Angel
+	Add(3,20385,1,0,0,5094,1,6242,750,6625,300); // Helmet of Orc Hero
+	Add(3,20058,1,0,0,5070,1,6242,500,6625,300); // Hot Blooded
+	Add(3,31714,1,0,0,5071,1,6242,500,6625,300); // Indian Headband
+	Add(3,19618,1,0,0,5069,1,6242,500,6625,300); // Kitsune mask
+	Add(3,19931,1,0,0,5084,1,6242,500,6625,300); // Lazy Smokie
+	Add(3,21300,1,0,0,5177,1,6242,500,6625,300); // Lion Mask
+	Add(3,19890,1,0,0,5027,1,6242,500,6625,300); // Mage Hat
+	Add(3,19662,1,0,0,5045,1,6242,500,6625,300); // Magician Hat
+	Add(3,20473,1,0,0,5031,1,6242,500,6625,300); // Mine Helmet
+	Add(3,19932,1,0,0,5073,1,6242,500,6625,300); // Model Training Hat
+	Add(3,20181,1,0,0,5117,1,6242,500,6625,300); // Mystic Rose
+	Add(3,20208,1,0,0,5442,1,6242,500,6625,300); // Necktie
+	Add(3,20453,1,0,0,5023,1,6242,500,6625,300); // Parcel Hat
+	Add(3,20050,1,0,0,5012,1,6242,500,6625,300); // Ph.D Hat
+	
+	Add(4,20304,1,0,0,5033,1,6242,500,6625,300); // Raccoon Hat
+	Add(4,20182,1,0,0,5039,1,6242,500,6625,300); // Rainbow Eggshell
+	Add(4,19701,1,0,0,5109,1,6242,500,6625,300); // Red Bonnet
+	Add(4,20226,1,0,0,5444,1,6242,500,6625,300); // Red Comb
+	Add(4,20224,1,0,0,5083,1,6242,500,6625,300); // Red Ribbon
+	Add(4,19639,1,0,0,2280,1,6242,500,6625,300); // Sakkat
+	Add(4,20138,1,0,0,5078,1,6242,500,6625,300); // Sea-Otter Hat
+	Add(4,19626,1,0,0,5243,1,6242,500,6625,300); // Shafka
+	Add(4,19858,1,0,0,5064,1,6242,500,6625,300); // Smokie Leaf
+	Add(4,19840,1,0,0,5022,1,6242,750,6625,300); // Hat of Sun God
+	Add(4,20330,1,0,0,5067,1,6242,500,6625,300); // Sombrero
+	Add(4,19533,1,0,0,5029,1,6242,500,6625,300); // Spore Hat
+	Add(4,20051,1,0,0,2272,1,6242,500,6625,300); // Stop Post
+	Add(4,19829,1,0,0,5062,1,6242,500,6625,300); // Straw Hat
+	Add(4,20207,1,0,0,5049,1,6242,500,6625,300); // Striped Hairband
+	Add(4,20348,1,0,0,5032,1,6242,500,6625,300); // Sunday Hat
+	Add(4,19851,1,0,0,5059,1,6242,500,6625,300); // Teddybear Hat
+	Add(4,20471,1,0,0,5077,1,6242,500,6625,300); // Tulip Hairpin
+	Add(4,31036,1,0,0,5173,1,6242,500,6625,300); // Magistrate Hat
+	Add(4,19546,1,0,0,5171,1,6242,500,6625,300); // Valkyrie Helm
+	Add(4,19984,1,0,0,5115,1,6242,500,6625,300); // Winter Hat
+	Add(4,20387,1,0,0,5079,1,6242,500,6625,300); // X Hairpin
+	Add(4,20244,1,0,0,5121,1,6242,750,6625,300); // Zealotus
+
+	Add(6,19781,1,0,0,5074,1,6242,500,6625,300); // Angel Wing Ears
+	Add(6,19734,1,0,0,2296,1,6242,500,6625,300); // Binoculars
+	Add(6,20389,1,0,0,5175,1,6242,500,6625,300); // Censor Bar
+	Add(6,19785,1,0,0,5107,1,6242,500,6625,300); // Crunch Toast
+	Add(6,19621,1,0,0,5068,1,6242,500,6625,300); // Evil Wing Ears
+	Add(6,19554,1,0,0,5176,1,6242,750,6625,300); // Hahoe
+	Add(6,19500,1,0,0,2278,1,6242,500,6625,300); // Mr Smile
+	Add(6,19872,1,0,0,2281,1,6242,750,6625,300); // Opera Mask
+	Add(6,19846,1,0,0,5447,1,6242,500,6625,300); // Opera Phantom Mask
+	Add(6,31712,1,0,0,5004,1,6242,500,6625,300); // Oxygen Mask
+	Add(6,20054,1,0,0,5110,1,6242,500,6625,300); // Pacifier
+	Add(6,20059,1,0,0,2292,1,6242,750,6625,300); // Welding Mask
+	Add(6,19551,1,0,0,2286,1,6242,500,6625,300); // Elven Ears
+	Add(6,19583,1,0,0,2263,1,6242,500,6625,300); // Zorro Mask
+	Add(6,19889,1,0,0,5085,1,6242,500,6625,300); // Small Ribbon
+	Add(6,20124,1,0,0,2291,1,6242,500,6625,300); // Masquerade	
+	
+	todo :
+	Add(5,20158,1,0,0,2233,1,6242,500,6625,300); // Circlet
+	Add(5,20074,1,0,0,2217,1,6242,500,6625,300); // Biretta
+	Add(5,20271,1,0,0,5351,1,6242,500,6625,300); // Sunflower
+	Add(5,19847,1,0,0,5348,1,6242,500,6625,300); // Big Sis
+	Add(5,19850,1,0,0,5168,1,6242,1000,6625,300); // Bongun
+	Add(5,19602,1,0,0,2231,1,6242,500,6625,300); // Gemmed Sallet
+	Add(5,19828,1,0,0,5120,1,6242,500,6625,300); // Bucket Hat
+	Add(5,2,1,0,0,5093,1,6242,750,6625,300); // Coif
+	Add(5,19526,1,0,0,2229,1,6242,500,6625,300); // Helm
+	Add(5,19901,1,0,0,5157,1,6242,500,6625,300); // Orc Helm
+	Add(5,31131,1,0,0,5158,1,6242,500,6625,300); // Monk Hat
+	Add(5,19799,1,0,0,5159,1,6242,500,6625,300); // Golden Gear
+	Add(5,19849,1,0,0,5167,1,6242,1000,6625,300); // Munak Hat
+	Add(5,3,1,0,0,5350,1,6242,500,6625,300); // Pirate Bandana
+	Add(5,19549,1,0,0,5160,1,6242,500,6625,300); // Majestic Goat
+	Add(5,19527,1,0,0,5161,1,6242,500,6625,300); // Spiky Band
+	Add(5,19796,1,0,0,5162,1,6242,500,6625,300); // Bone Helm
+	Add(5,19619,1,0,0,5163,1,6242,500,6625,300); // Corsair
+	Add(5,19630,1,0,0,5165,1,6242,500,6625,300); // Crown
+	Add(5,19629,1,0,0,5164,1,6242,500,6625,300); // Tiara
+	Add(5,19580,1,0,0,5166,1,6242,500,6625,300); // Sphinx
+	
+	Add(5,19578,1,0,0,2225,1,6242,750,6625,300); // Goggles
+	Add(6,19735,1,0,0,5014,1,6242,500,6625,300); // Fin Helm
+	Add(6,21,1,0,0,5104,1,6242,500,6625,300); // Dark Blinder
+	Add(6,19925,1,0,0,18874,1,6242,500,6625,300); // Monocle
+	Add(6,20123,1,0,0,2276,1,6242,500,6625,300); // Eagle Eyes
+	Add(6,19732,1,0,0,5090,1,6242,750,6625,300); // Goblin Leader
+	Add(6,20390,1,0,0,2297,1,6242,750,6625,300); // Goblin
+	Add(6,19553,1,0,0,5096,1,6242,500,6625,300); // Assassin
+	Add(6,19505,1,0,0,2267,1,6242,500,6625,300); // Cigar
+	Add(6,19636,1,0,0,2262,1,6242,500,6625,300); // Clown
+	Add(6,20061,1,0,0,2265,1,6242,500,6625,300); // Gangster
+	Add(6,19528,1,0,0,2266,1,6242,500,6625,300); // Cain
+	Add(6,20091,1,0,0,2268,1,6242,500,6625,300); // Pipe
+
+// -----------------------------------------------------------
+
+//=====================================================================================
+// ------------------- YOUR SHOPS AND ITEMS SHOPS HAVE BEEN ADDED ---------------------
+//=====================================================================================
+
+	freeloop(0);
+	set .menu$,"";
+	for(set .@i,1; .@i<=getarraysize(.Shops$); set .@i,.@i+1) {
+		set .menu$, .menu$+.Shops$[.@i]+":";
+		npcshopdelitem "kwhshop"+.@i,909;
+	}
+	end;
+
+OnMenu:
+
+	mes "[^FF6600Kyewolhyang^000000]";
+	mes "Hey";
+	mes "I can make a costume based on-";
+	mes "headgears listed in catalogue.";
+	next;
+	mes "[^FF6600Kyewolhyang^000000]";
+	mes "The cost is midgard coins";
+	mes "and 300 high energy crystals";
+	
+	set .@size, getarraysize(@i);
+	if (!.@size) set @shop_index, select(.menu$);
+	else if (.@size == 1) set @shop_index, @i[0];
+	else {
+		for(set .@j,0; .@j<.@size; set .@j,.@j+1)
+			set .@menu$, .@menu$+.Shops$[@i[.@j]]+":";
+		set @shop_index, @i[select(.@menu$)-1];
+	}
+	deletearray @i[0],getarraysize(@i);
+	if (.Shops$[@shop_index] == "") {
+		message strcharinfo(0),"An error has occurred.";
+		end;
+	}
+	dispbottom "Select one item at a time.";
+	dispbottom "Discount Skill won't work at this shop, you'll have to pay the full price if there's one.";
+	callshop "kwhshop"+@shop_index,1;
+	npcshopattach "kwhshop"+@shop_index;
+	end;
+
+OnBuyItem:
+	// .@q[] : RewardID, BoughtAmt, RewardAmt, BaseAmt, ReqZeny, ReqPts, { ReqItem, ReqAmt, ... }
+	setarray .@q[0],@bought_nameid[0],((@bought_quantity[0] > .MaxStack)?.MaxStack:@bought_quantity[0]);
+	copyarray .@q[3],getd(".q_"+@shop_index+"_"+.@q[0]+"[0]"),getarraysize(getd(".q_"+@shop_index+"_"+.@q[0]));
+	set .@q[2],.@q[1]*.@q[3];
+	if (!.@q[2] || .@q[2] > 30000) {
+		message strcharinfo(0),"You can't purchase that many "+getitemname(.@q[0])+".";
+		end;
+	}
+	mes "[^FF6600Kyewolhyang^000000]";
+	mes "Reward: ^0055FF"+((.@q[2] > 1)?.@q[2]+"x ":"")+Slot(.@q[0])+"^000000";
+	mes "Requirements:";
+	disable_items;
+	if (.@q[4]) mes " > "+Chk(Zeny,.@q[4]*.@q[1])+(.@q[4]*.@q[1])+" Zeny^000000";
+	if (.@q[5]) mes " > "+Chk(getd(.Points$[0]),.@q[5]*.@q[1])+(.@q[5]*.@q[1])+" "+.Points$[1]+" ("+getd(.Points$[0])+"/"+(.@q[5]*.@q[1])+")^000000";
+	if (.@q[6]) for(set .@i,6; .@i<getarraysize(.@q); set .@i,.@i+2)
+		mes " > "+Chk(countitem(.@q[.@i]),.@q[.@i+1]*.@q[1])+((.ShowID)?"{"+.@q[.@i]+"} ":"")+Slot(.@q[.@i])+" ("+countitem(.@q[.@i])+"/"+(.@q[.@i+1]*.@q[1])+")^000000";
+	next;
+	setarray @qe[1], getiteminfo(.@q[0], ITEMINFO_LOCATIONS), getiteminfo(.@q[0], ITEMINFO_VIEW);
+	if (@qe[2] > 0 && ((@qe[1] & EQP_HEAD_LOW) || (@qe[1] & EQP_HEAD_TOP) || (@qe[1] & EQP_HEAD_MID) || (@qe[1] & EQP_COSTUME_HEAD_TOP) || (@qe[1] & EQP_COSTUME_HEAD_MID) || (@qe[1] & EQP_COSTUME_HEAD_LOW) || (@qe[1] & EQP_GARMENT) || (@qe[1] & EQP_COSTUME_GARMENT)))
+		set .@preview,1;
+	addtimer 1000, strnpcinfo(0)+"::OnEnd";
+	while(1) {
+		switch(select(" ~ Purchase ^0055FF"+getitemname(.@q[0])+"^000000:"+((.@preview && !@qe[7])?" ~ Preview...":"")+": ~ ^777777Cancel^000000")) {
+		case 1:
+			if (@qe[0]) {
+				mes "[^FF6600Kyewolhyang^000000]";
+				mes "You're missing one or more quest requirements.";
+				close;
+			}
+			if (!checkweight(.@q[0],.@q[2])) {
+				mes "[^FF6600Kyewolhyang^000000]";
+				mes "^FF0000You need "+(((.@q[2]*getiteminfo(.@q[0], ITEMINFO_WEIGHT))+Weight-MaxWeight)/10)+" additional weight capacity to complete this trade.^000000";
+				close;
+			}
+			if (.@q[4]) set Zeny, Zeny-(.@q[4]*.@q[1]);
+			if (.@q[5]) setd .Points$[0], getd(.Points$[0])-(.@q[5]*.@q[1]);
+			if (.@q[6]) for(set .@i,6; .@i<getarraysize(.@q); set .@i,.@i+2)
+				delitem .@q[.@i],.@q[.@i+1]*.@q[1];
+			getitem .@q[0],.@q[2];
+			if (.Announce) announce strcharinfo(0)+" has created "+((.@q[2] > 1)?.@q[2]+"x "+getitemname(.@q[0]):callfunc("F_InsertArticle",getitemname(.@q[0])))+"!",0;
+			specialeffect2 EF_FLOWERLEAF;
+			close;
+		case 2:
+			setarray @qe[3], getlook(LOOK_HEAD_BOTTOM), getlook(LOOK_HEAD_TOP), getlook(LOOK_HEAD_MID), getlook(LOOK_ROBE), 1;
+			if ((@qe[1] & 1) || (@qe[1] & 4096)) changelook LOOK_HEAD_BOTTOM, @qe[2];
+			else if ((@qe[1] & 256) || (@qe[1] & 1024)) changelook LOOK_HEAD_TOP, @qe[2];
+			else if ((@qe[1] & 512) || (@qe[1] & 2048)) changelook LOOK_HEAD_MID, @qe[2];
+			else if ((@qe[1] & 4) || (@qe[1] & 8192)) changelook LOOK_ROBE, @qe[2];
+			break;
+		case 3:
+			close;
+		}
+	}
+
+OnEnd:
+	if (@qe[7]) {
+		changelook LOOK_HEAD_BOTTOM, @qe[3];
+		changelook LOOK_HEAD_TOP, @qe[4];
+		changelook LOOK_HEAD_MID, @qe[5];
+		changelook LOOK_ROBE, @qe[6];
+	}
+	deletearray @qe[0],8;
+	end;
+
+function Add {
+	if (getitemname(getarg(1)) == "null") {
+		debugmes "Quest reward #"+getarg(1)+" invalid (skipped).";
+		return;
+	}
+	setarray .@j[0],getarg(2),getarg(3),getarg(4);
+	for(set .@i,5; .@i<getargcount(); set .@i,.@i+2) {
+		if (getitemname(getarg(.@i)) == "null") {
+			debugmes "Quest requirement #"+getarg(.@i)+" invalid (skipped).";
+			return;
+		} else
+			setarray .@j[.@i-2],getarg(.@i),getarg(.@i+1);
+	}
+	copyarray getd(".q_"+getarg(0)+"_"+getarg(1)+"[0]"),.@j[0],getarraysize(.@j);
+	npcshopadditem "kwhshop"+getarg(0),getarg(1),((.ShowZeny)?getarg(3):0);
+	return;
+}
+
+function Chk {
+	if (getarg(0) < getarg(1)) {
+		set @qe[0],1;
+		return "^FF0000";
+	} else
+		return "^00FF00";
+}
+
+function Slot {
+	set .@s$,getitemname(getarg(0));
+	switch(.ShowSlot) {
+		case 1: if (!getitemslots(getarg(0))) return .@s$;
+		case 2: if (getiteminfo(getarg(0), ITEMINFO_TYPE) == 4 || getiteminfo(getarg(0), ITEMINFO_TYPE) == 5) return .@s$+" ["+getitemslots(getarg(0))+"]";
+		default: return .@s$;
+	}
+}
+}
+
+function	script	kwhshop	{
+	deletearray @i[0],getarraysize(@i);
+	for(set .@i,0; .@i<getargcount(); set .@i,.@i+1)
+		set @i[.@i],getarg(.@i);
+	doevent "quest_shop::OnMenu";
+	end;
+}
+
+
+// Dummy shop data -- copy as needed.
+//============================================================
+-	shop	kwhshop1	-1,909:-1
+-	shop	kwhshop2	-1,909:-1
+-	shop	kwhshop3	-1,909:-1
+-	shop	kwhshop4	-1,909:-1
+-	shop	kwhshop5	-1,909:-1
+-	shop	kwhshop6	-1,909:-1

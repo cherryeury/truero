@@ -1477,11 +1477,7 @@ int skill_additional_effect(struct block_list* src, struct block_list *bl, uint1
 		break;
 
 	case WZ_VERMILION:
-#ifdef RENEWAL
 		sc_start(src,bl,SC_BLIND,10 + 5 * skill_lv,skill_lv,skill_get_time2(skill_id,skill_lv));
-#else
-		sc_start(src,bl,SC_BLIND,min(4*skill_lv,40),skill_lv,skill_get_time2(skill_id,skill_lv));
-#endif
 		break;
 
 	case WZ_HEAVENDRIVE:

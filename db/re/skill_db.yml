@@ -225,7 +225,7 @@ Body:
   - Id: 6
     Name: SM_PROVOKE
     Description: Provoke
-    MaxLevel: 10
+    MaxLevel: 5
     TargetType: Attack
     DamageFlags:
       NoDamage: true
@@ -259,7 +259,7 @@ Body:
   - Id: 7
     Name: SM_MAGNUM
     Description: Magnum Break
-    MaxLevel: 10
+    MaxLevel: 5
     Type: Weapon
     TargetType: Self
     DamageFlags:
@@ -306,7 +306,7 @@ Body:
   - Id: 8
     Name: SM_ENDURE
     Description: Endure
-    MaxLevel: 10
+    MaxLevel: 5
     Type: Weapon
     TargetType: Self
     DamageFlags:
@@ -5576,13 +5576,11 @@ Body:
   - Id: 157
     Name: MG_ENERGYCOAT
     Description: Energy Coat
-    MaxLevel: 1
+    MaxLevel: 5
     Type: Magic
     TargetType: Self
     DamageFlags:
       NoDamage: true
-    Flags:
-      IsQuest: true
     Hit: Single
     HitCount: 1
     CastCancel: true

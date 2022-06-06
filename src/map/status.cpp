@@ -2757,6 +2757,8 @@ static int status_get_spbonus(struct block_list *bl, enum e_status_bonus type) {
 				bonus += i;
 			if (sc->data[SC_NIBELUNGEN] && sc->data[SC_NIBELUNGEN]->val2 == RINGNBL_SPRATE)
 				bonus += 30;
+			if ((i = pc_checkskill(sd, (MG_ENERGYCOAT))) > 0)
+				bonus += i*2;
 #endif
 		}
 
@@ -3578,7 +3580,6 @@ int status_calc_pc_sub(struct map_session_data* sd, uint8 opt)
 		base_status->dex += 10;
 		base_status->luk += 10;
 	}
-
 	// Absolute modifiers from passive skills
 	if(pc_checkskill(sd,BS_HILTBINDING)>0)
 		base_status->str++;
@@ -3590,7 +3591,10 @@ int status_calc_pc_sub(struct map_session_data* sd, uint8 opt)
 		base_status->int_ += skill;
 	if (pc_checkskill(sd, SU_POWEROFLAND) > 0)
 		base_status->int_ += 20;
-
+	if((skill=pc_checkskill(sd,SM_ENDURE))>0)
+		base_status->vit += skill;	
+	if((skill=pc_checkskill(sd,SA_FREECAST))>0)
+		base_status->dex += -20+skill*2;
 	// Bonuses from cards and equipment as well as base stat, remember to avoid overflows.
 	i = base_status->str + sd->status.str + sd->indexed_bonus.param_bonus[PARAM_STR] + sd->indexed_bonus.param_equip[PARAM_STR];
 	base_status->str = cap_value(i,0,USHRT_MAX);
@@ -3792,7 +3796,20 @@ int status_calc_pc_sub(struct map_session_data* sd, uint8 opt)
 		}
 	}
 	if((sd->status.weapon == W_1HAXE || sd->status.weapon == W_2HAXE) && (skill = pc_checkskill(sd,NC_TRAININGAXE)) > 0)
-		base_status->hit += skill * 3;
+		base_status->hit += skill * 3;	
+	if((sd->status.weapon == W_BOOK) && (skill = pc_checkskill(sd,SA_ADVANCEDBOOK)) > 0)
+		base_status->int_ += skill;
+	if((sd->status.weapon == W_1HSWORD || sd->status.weapon == W_2HSWORD) && (skill = pc_checkskill(sd,SM_TWOHAND)) > 0)
+		base_status->hit += skill; 
+	if((sd->status.weapon == W_1HSWORD || sd->status.weapon == W_2HSWORD) && (skill = pc_checkskill(sd,SM_TWOHAND)) > 0)
+		base_status->batk += skill; 	
+	if((sd->status.weapon == W_1HSPEAR || sd->status.weapon == W_2HSPEAR) && (skill = pc_checkskill(sd,KN_SPEARMASTERY)) > 0)
+		base_status->hit += skill;
+	if((sd->status.weapon == W_1HSPEAR || sd->status.weapon == W_2HSPEAR) && (skill = pc_checkskill(sd,KN_SPEARMASTERY)) > 0)
+		base_status->batk += skill;
+	if(!pc_isriding(sd) && !pc_isridingdragon(sd))
+		if((sd->status.weapon == W_1HSPEAR || sd->status.weapon == W_2HSPEAR) && (skill = pc_checkskill(sd,KN_SPEARMASTERY)) > 0)
+			base_status->batk += skill;
 	if((sd->status.weapon == W_MACE || sd->status.weapon == W_2HMACE) && (skill = pc_checkskill(sd,NC_TRAININGAXE)) > 0)
 		base_status->hit += skill * 2;
 	if (pc_checkskill(sd, SU_POWEROFLIFE) > 0)
@@ -3891,7 +3908,7 @@ int status_calc_pc_sub(struct map_session_data* sd, uint8 opt)
 	// Renewal modifiers are handled in status_base_amotion_pc
 #ifndef RENEWAL_ASPD
 	if((skill=pc_checkskill(sd,SA_ADVANCEDBOOK))>0 && sd->status.weapon == W_BOOK)
-		base_status->aspd_rate -= 5*skill;
+		base_status->aspd_rate -= 10*skill;
 	if ((skill = pc_checkskill(sd,SG_DEVIL)) > 0 && ((sd->class_&MAPID_THIRDMASK) == MAPID_STAR_EMPEROR || pc_is_maxjoblv(sd)))
 		base_status->aspd_rate -= 30*skill;
 	if((skill=pc_checkskill(sd,GS_SINGLEACTION))>0 &&
@@ -6672,12 +6689,10 @@ static signed short status_calc_critical(struct block_list *bl, struct status_ch
 		critical += sc->data[SC_TRUESIGHT]->val2;
 	if (sc->data[SC_CLOAKING])
 		critical += critical;
-#ifdef RENEWAL
 	if (sc->data[SC_SPEARQUICKEN])
 		critical += 3*sc->data[SC_SPEARQUICKEN]->val1*10;
 	if (sc->data[SC_TWOHANDQUICKEN])
 		critical += (2 + sc->data[SC_TWOHANDQUICKEN]->val1) * 10;
-#endif
 	if (sc->data[SC__INVISIBILITY])
 		critical += sc->data[SC__INVISIBILITY]->val3 * 10;
 	if (sc->data[SC__UNLUCKY])
@@ -6744,7 +6759,6 @@ static signed short status_calc_hit(struct block_list *bl, struct status_change 
 		hit -= sc->data[SC_ILLUSIONDOPING]->val2;
 	if (sc->data[SC_MTF_ASPD])
 		hit += sc->data[SC_MTF_ASPD]->val2;
-#ifdef RENEWAL
 	if (sc->data[SC_BLESSING])
 		hit += sc->data[SC_BLESSING]->val1 * 2;
 	if (sc->data[SC_TWOHANDQUICKEN])
@@ -6753,7 +6767,6 @@ static signed short status_calc_hit(struct block_list *bl, struct status_change 
 		hit += sc->data[SC_ADRENALINE]->val1 * 3 + 5;
 	if (sc->data[SC_NIBELUNGEN] && sc->data[SC_NIBELUNGEN]->val2 == RINGNBL_HIT)
 		hit += 50;
-#endif
 	if (sc->data[SC_SOULFALCON])
 		hit += sc->data[SC_SOULFALCON]->val3;
 	if (sc->data[SC_SATURDAYNIGHTFEVER])
@@ -6828,12 +6841,10 @@ static signed short status_calc_flee(struct block_list *bl, struct status_change
 		flee -= sc->data[SC_WATER_BARRIER]->val2;
 	if( sc->data[SC_C_MARKER] )
 		flee -= sc->data[SC_C_MARKER]->val3;
-#ifdef RENEWAL
 	if( sc->data[SC_SPEARQUICKEN] )
 		flee += 2 * sc->data[SC_SPEARQUICKEN]->val1;
 	if (sc->data[SC_NIBELUNGEN] && sc->data[SC_NIBELUNGEN]->val2 == RINGNBL_FLEE)
 		flee += 50;
-#endif
 
 	// Rate value
 	if(sc->data[SC_INCFLEERATE])
@@ -7218,7 +7229,7 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 		if( sd->ud.skill_id == LG_EXEEDBREAK )
 			speed_rate = 160 - 10 * sd->ud.skill_lv;
 		else
-			speed_rate = 175 - 5 * pc_checkskill(sd,SA_FREECAST);
+			speed_rate = 200 - 5 * pc_checkskill(sd,SA_FREECAST);
 	} else {
 		int val = 0;
 
@@ -10301,7 +10312,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 			tick = INFINITE_TICK; // Duration sent to the client should be infinite
 			break;
 		case SC_PARRYING:
-		    val2 = 20 + val1*3; // Block Chance
+		    val2 = val1*5; // Block Chance
 			break;
 
 		case SC_WINDWALK:

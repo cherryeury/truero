@@ -56,29 +56,29 @@ Body:
     Inherit:
       Novice: true
     Tree:
-      - Name: SM_SWORD
-        MaxLevel: 10
+#      - Name: SM_SWORD
+#        MaxLevel: 10
       - Name: SM_TWOHAND
         MaxLevel: 10
-        Requires:
-          - Name: SM_SWORD
-            Level: 1
+#        Requires:
+#          - Name: SM_SWORD
+#            Level: 1
       - Name: SM_RECOVERY
         MaxLevel: 10
       - Name: SM_BASH
         MaxLevel: 10
-      - Name: SM_PROVOKE
-        MaxLevel: 10
+      - Name: SM_ENDURE
+        MaxLevel: 5
       - Name: SM_MAGNUM
-        MaxLevel: 10
+        MaxLevel: 5
         Requires:
           - Name: SM_BASH
             Level: 5
-      - Name: SM_ENDURE
-        MaxLevel: 10
-        Requires:
-          - Name: SM_PROVOKE
-            Level: 5
+#      - Name: SM_ENDURE
+#        MaxLevel: 5
+#        Requires:
+#          - Name: SM_PROVOKE
+#            Level: 5
       - Name: SM_MOVINGRECOVERY
         MaxLevel: 1
       - Name: SM_FATALBLOW
@@ -93,19 +93,27 @@ Body:
         MaxLevel: 10
       - Name: MG_SIGHT
         MaxLevel: 1
-      - Name: MG_NAPALMBEAT
+  - Job: Mage
+    Inherit:
+      Novice: true
+    Tree:
+      - Name: MG_SRECOVERY
         MaxLevel: 10
-      - Name: MG_SAFETYWALL
-        MaxLevel: 10
-        Requires:
-          - Name: MG_NAPALMBEAT
-            Level: 7
-          - Name: MG_SOULSTRIKE
-            Level: 5
+      - Name: MG_SIGHT
+        MaxLevel: 1
+#      - Name: MG_NAPALMBEAT
+#        MaxLevel: 10
+#      - Name: MG_SAFETYWALL
+#        MaxLevel: 10
+#        Requires:
+#          - Name: MG_NAPALMBEAT
+#            Level: 7
+#          - Name: MG_SOULSTRIKE
+#            Level: 5
       - Name: MG_SOULSTRIKE
         MaxLevel: 10
         Requires:
-          - Name: MG_NAPALMBEAT
+          - Name: MG_ENERGYCOAT
             Level: 4
       - Name: MG_COLDBOLT
         MaxLevel: 10
@@ -114,8 +122,8 @@ Body:
         Requires:
           - Name: MG_COLDBOLT
             Level: 5
-      - Name: MG_STONECURSE
-        MaxLevel: 10
+#      - Name: MG_STONECURSE
+#        MaxLevel: 10
       - Name: MG_FIREBALL
         MaxLevel: 10
         Requires:
@@ -138,7 +146,7 @@ Body:
           - Name: MG_LIGHTNINGBOLT
             Level: 4
       - Name: MG_ENERGYCOAT
-        MaxLevel: 1
+        MaxLevel: 5
   - Job: Archer
     Inherit:
       Novice: true
@@ -171,29 +179,29 @@ Body:
       Novice: true
     Tree:
       - Name: AL_DP
-        MaxLevel: 10
+        MaxLevel: 5
       - Name: AL_DEMONBANE
-        MaxLevel: 10
+        MaxLevel: 5
         Requires:
           - Name: AL_DP
             Level: 3
       - Name: AL_RUWACH
         MaxLevel: 1
       - Name: AL_PNEUMA
-        MaxLevel: 1
+        MaxLevel: 3
         Requires:
-          - Name: AL_WARP
-            Level: 4
-      - Name: AL_TELEPORT
-        MaxLevel: 2
-        Requires:
-          - Name: AL_RUWACH
-            Level: 1
-      - Name: AL_WARP
-        MaxLevel: 4
-        Requires:
-          - Name: AL_TELEPORT
-            Level: 2
+          - Name: AL_DEMONBANE
+            Level: 5
+#      - Name: AL_TELEPORT
+#        MaxLevel: 2
+#        Requires:
+#          - Name: AL_RUWACH
+#            Level: 1
+#      - Name: AL_WARP
+#        MaxLevel: 4
+#        Requires:
+#          - Name: AL_TELEPORT
+#            Level: 2
       - Name: AL_HEAL
         MaxLevel: 10
       - Name: AL_INCAGI
@@ -201,23 +209,23 @@ Body:
         Requires:
           - Name: AL_HEAL
             Level: 3
-      - Name: AL_DECAGI
-        MaxLevel: 10
-        Requires:
-          - Name: AL_INCAGI
-            Level: 1
+#      - Name: AL_DECAGI
+#        MaxLevel: 10
+#        Requires:
+#          - Name: AL_INCAGI
+#            Level: 1
       - Name: AL_HOLYWATER
         MaxLevel: 1
-      - Name: AL_CRUCIS
-        MaxLevel: 10
-        Requires:
-          - Name: AL_DEMONBANE
-            Level: 3
-      - Name: AL_ANGELUS
-        MaxLevel: 10
-        Requires:
-          - Name: AL_DP
-            Level: 3
+#      - Name: AL_CRUCIS
+#        MaxLevel: 10
+#        Requires:
+#          - Name: AL_DEMONBANE
+#            Level: 3
+#      - Name: AL_ANGELUS
+#        MaxLevel: 10
+#        Requires:
+#          - Name: AL_DP
+#            Level: 3
       - Name: AL_BLESSING
         MaxLevel: 10
         Requires:
@@ -229,20 +237,20 @@ Body:
           - Name: AL_HEAL
             Level: 2
       - Name: AL_HOLYLIGHT
-        MaxLevel: 1
+        MaxLevel: 10
   - Job: Merchant
     Inherit:
       Novice: true
     Tree:
       - Name: MC_INCCARRY
-        MaxLevel: 10
+        MaxLevel: 5
       - Name: MC_DISCOUNT
-        MaxLevel: 10
+        MaxLevel: 5
         Requires:
           - Name: MC_INCCARRY
             Level: 3
       - Name: MC_OVERCHARGE
-        MaxLevel: 10
+        MaxLevel: 5
         Requires:
           - Name: MC_DISCOUNT
             Level: 3
@@ -254,7 +262,7 @@ Body:
       - Name: MC_IDENTIFY
         MaxLevel: 1
       - Name: MC_VENDING
-        MaxLevel: 10
+        MaxLevel: 5
         Requires:
           - Name: MC_PUSHCART
             Level: 3
@@ -308,60 +316,56 @@ Body:
       Novice: true
       Swordman: true
     Tree:
-      - Name: KN_SPEARMASTERY
-        MaxLevel: 10
+#      - Name: KN_SPEARMASTERY
+#        MaxLevel: 10
       - Name: KN_PIERCE
         MaxLevel: 10
         Requires:
-          - Name: KN_SPEARMASTERY
-            Level: 1
+          - Name: CR_SPEARQUICKEN
+            Level: 5
       - Name: KN_BRANDISHSPEAR
         MaxLevel: 10
         Requires:
           - Name: KN_RIDING
             Level: 1
-          - Name: KN_SPEARSTAB
-            Level: 3
-      - Name: KN_SPEARSTAB
-        MaxLevel: 10
-        Requires:
           - Name: KN_PIERCE
             Level: 5
-      - Name: KN_SPEARBOOMERANG
-        MaxLevel: 5
-        Requires:
-          - Name: KN_PIERCE
-            Level: 3
+#      - Name: KN_SPEARSTAB
+#        MaxLevel: 10
+#        Requires:
+#          - Name: KN_PIERCE
+#            Level: 5
+#      - Name: KN_SPEARBOOMERANG
+#        MaxLevel: 5
+#        Requires:
+#          - Name: KN_PIERCE
+#            Level: 3
       - Name: KN_TWOHANDQUICKEN
         MaxLevel: 10
         Requires:
           - Name: SM_TWOHAND
-            Level: 1
-      - Name: KN_AUTOCOUNTER
-        MaxLevel: 5
-        Requires:
-          - Name: SM_TWOHAND
-            Level: 1
+            Level: 10
+#        Requires:
+#          - Name: SM_TWOHAND
+#            Level: 1
       - Name: KN_BOWLINGBASH
         MaxLevel: 10
         Requires:
-          - Name: SM_BASH
-            Level: 10
-          - Name: SM_MAGNUM
-            Level: 3
-          - Name: SM_TWOHAND
-            Level: 5
+#          - Name: SM_BASH
+#            Level: 10
+#          - Name: SM_MAGNUM
+#            Level: 3
+#          - Name: SM_TWOHAND
+#            Level: 10
           - Name: KN_TWOHANDQUICKEN
             Level: 10
-          - Name: KN_AUTOCOUNTER
-            Level: 5
       - Name: KN_RIDING
         MaxLevel: 1
         Requires:
-          - Name: SM_ENDURE
-            Level: 1
+#          - Name: SM_ENDURE
+#            Level: 1
       - Name: KN_CAVALIERMASTERY
-        MaxLevel: 5
+        MaxLevel: 10
         Requires:
           - Name: KN_RIDING
             Level: 1
@@ -1019,18 +1023,18 @@ Body:
       Novice: true
       Mage: true
     Tree:
-      - Name: WZ_ESTIMATION
-        MaxLevel: 1
-      - Name: WZ_EARTHSPIKE
-        MaxLevel: 5
-        Requires:
-          - Name: SA_SEISMICWEAPON
-            Level: 1
-      - Name: WZ_HEAVENDRIVE
-        MaxLevel: 5
-        Requires:
-          - Name: WZ_EARTHSPIKE
-            Level: 1
+#      - Name: WZ_ESTIMATION
+#        MaxLevel: 1
+#      - Name: WZ_EARTHSPIKE
+#        MaxLevel: 5
+#        Requires:
+#          - Name: SA_SEISMICWEAPON
+#            Level: 1
+#      - Name: WZ_HEAVENDRIVE
+#        MaxLevel: 5
+#        Requires:
+#          - Name: WZ_EARTHSPIKE
+#            Level: 1
       - Name: SA_ADVANCEDBOOK
         MaxLevel: 10
       - Name: SA_CASTCANCEL
@@ -1038,11 +1042,11 @@ Body:
         Requires:
           - Name: SA_ADVANCEDBOOK
             Level: 2
-      - Name: SA_MAGICROD
-        MaxLevel: 5
-        Requires:
-          - Name: SA_ADVANCEDBOOK
-            Level: 4
+#      - Name: SA_MAGICROD
+#        MaxLevel: 5
+#        Requires:
+#          - Name: SA_ADVANCEDBOOK
+#            Level: 4
       - Name: SA_SPELLBREAKER
         MaxLevel: 5
         Requires:
@@ -1082,63 +1086,63 @@ Body:
       - Name: SA_SEISMICWEAPON
         MaxLevel: 5
         Requires:
-          - Name: MG_STONECURSE
+          - Name: WZ_EARTHSPIKE
             Level: 1
           - Name: SA_ADVANCEDBOOK
             Level: 5
-      - Name: SA_DRAGONOLOGY
-        MaxLevel: 5
-        Requires:
-          - Name: SA_ADVANCEDBOOK
-            Level: 9
-      - Name: SA_VOLCANO
-        MaxLevel: 5
-        Requires:
-          - Name: SA_FLAMELAUNCHER
-            Level: 2
-      - Name: SA_DELUGE
-        MaxLevel: 5
-        Requires:
-          - Name: SA_FROSTWEAPON
-            Level: 2
-      - Name: SA_VIOLENTGALE
-        MaxLevel: 5
-        Requires:
-          - Name: SA_LIGHTNINGLOADER
-            Level: 2
-      - Name: SA_LANDPROTECTOR
-        MaxLevel: 5
-        Requires:
-          - Name: SA_VOLCANO
-            Level: 3
-          - Name: SA_DELUGE
-            Level: 3
-          - Name: SA_VIOLENTGALE
-            Level: 3
-      - Name: SA_DISPELL
-        MaxLevel: 5
-        Requires:
-          - Name: SA_SPELLBREAKER
-            Level: 3
-      - Name: SA_ABRACADABRA
-        MaxLevel: 10
-        Requires:
-          - Name: SA_AUTOSPELL
-            Level: 5
-          - Name: SA_DISPELL
-            Level: 1
-          - Name: SA_LANDPROTECTOR
-            Level: 1
-      - Name: SA_CREATECON
-        MaxLevel: 1
-      - Name: SA_ELEMENTWATER
-        MaxLevel: 1
-      - Name: SA_ELEMENTGROUND
-        MaxLevel: 1
-      - Name: SA_ELEMENTFIRE
-        MaxLevel: 1
-      - Name: SA_ELEMENTWIND
-        MaxLevel: 1
+#      - Name: SA_DRAGONOLOGY
+#        MaxLevel: 5
+#        Requires:
+#          - Name: SA_ADVANCEDBOOK
+#            Level: 9
+#      - Name: SA_VOLCANO
+#        MaxLevel: 5
+#        Requires:
+#          - Name: SA_FLAMELAUNCHER
+#            Level: 2
+#      - Name: SA_DELUGE
+#        MaxLevel: 5
+#        Requires:
+#          - Name: SA_FROSTWEAPON
+#            Level: 2
+#      - Name: SA_VIOLENTGALE
+#        MaxLevel: 5
+#        Requires:
+#          - Name: SA_LIGHTNINGLOADER
+#            Level: 2
+#      - Name: SA_LANDPROTECTOR
+#        MaxLevel: 5
+#        Requires:
+#          - Name: SA_VOLCANO
+#            Level: 3
+#          - Name: SA_DELUGE
+#            Level: 3
+#          - Name: SA_VIOLENTGALE
+#            Level: 3
+#      - Name: SA_DISPELL
+#        MaxLevel: 5
+#        Requires:
+#          - Name: SA_FREECAST
+#            Level: 3
+#      - Name: SA_ABRACADABRA
+#        MaxLevel: 10
+#        Requires:
+#          - Name: SA_AUTOSPELL
+#            Level: 5
+#          - Name: SA_DISPELL
+#            Level: 1
+#          - Name: SA_LANDPROTECTOR
+#            Level: 1
+#      - Name: SA_CREATECON
+#        MaxLevel: 1
+#      - Name: SA_ELEMENTWATER
+#        MaxLevel: 1
+#      - Name: SA_ELEMENTGROUND
+#        MaxLevel: 1
+#      - Name: SA_ELEMENTFIRE
+#        MaxLevel: 1
+#      - Name: SA_ELEMENTWIND
+#        MaxLevel: 1
   - Job: Rogue
     Inherit:
       Novice: true
@@ -2008,66 +2012,62 @@ Body:
     Tree:
       - Name: LK_AURABLADE
         MaxLevel: 5
-        Requires:
-          - Name: SM_BASH
-            Level: 5
-          - Name: SM_MAGNUM
-            Level: 5
-          - Name: SM_TWOHAND
-            Level: 5
+#        Requires:
+#          - Name: SM_MAGNUM
+#            Level: 5
+#          - Name: SM_TWOHAND
+#            Level: 5
       - Name: LK_PARRYING
         MaxLevel: 10
         Requires:
-          - Name: SM_TWOHAND
-            Level: 10
-          - Name: SM_PROVOKE
-            Level: 5
+#          - Name: SM_TWOHAND
+#            Level: 10
+#          - Name: SM_PROVOKE
+#            Level: 5
           - Name: KN_TWOHANDQUICKEN
             Level: 3
       - Name: LK_CONCENTRATION
         MaxLevel: 5
         Requires:
-          - Name: SM_RECOVERY
-            Level: 5
-          - Name: KN_SPEARMASTERY
+#          - Name: SM_RECOVERY
+#            Level: 5
+          - Name: CR_SPEARQUICKEN
             Level: 5
           - Name: KN_RIDING
             Level: 1
       - Name: LK_TENSIONRELAX
         MaxLevel: 1
-        Requires:
-          - Name: SM_RECOVERY
-            Level: 10
-          - Name: SM_PROVOKE
-            Level: 5
-          - Name: SM_ENDURE
-            Level: 3
-      - Name: LK_BERSERK   # Requires Job Level 50
+#        Requires:
+#          - Name: SM_RECOVERY
+#            Level: 10
+#          - Name: SM_PROVOKE
+#            Level: 5
+#          - Name: SM_ENDURE
+#            Level: 3
+      - Name: LK_BERSERK   # Job Level 50 requirement
         MaxLevel: 1
         JobLevel: 50
       - Name: LK_SPIRALPIERCE
         MaxLevel: 5
         Requires:
-          - Name: KN_SPEARMASTERY
-            Level: 10
+          - Name: CR_SPEARQUICKEN
+            Level: 5
           - Name: KN_PIERCE
             Level: 5
-          - Name: KN_SPEARSTAB
-            Level: 5
+#          - Name: KN_SPEARSTAB
+#            Level: 5
           - Name: KN_RIDING
             Level: 1
       - Name: LK_HEADCRUSH
         MaxLevel: 5
         Requires:
-          - Name: KN_SPEARMASTERY
+          - Name: CR_SPEARQUICKEN
             Level: 9
           - Name: KN_RIDING
             Level: 1
       - Name: LK_JOINTBEAT
         MaxLevel: 10
         Requires:
-          - Name: KN_SPEARMASTERY
-            Level: 9
           - Name: KN_CAVALIERMASTERY
             Level: 3
           - Name: LK_HEADCRUSH

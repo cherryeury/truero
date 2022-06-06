@@ -225,7 +225,7 @@ Body:
   - Id: 6
     Name: SM_PROVOKE
     Description: Provoke
-    MaxLevel: 10
+    MaxLevel: 5
     TargetType: Attack
     DamageFlags:
       NoDamage: true
@@ -260,7 +260,7 @@ Body:
   - Id: 7
     Name: SM_MAGNUM
     Description: Magnum Break
-    MaxLevel: 10
+    MaxLevel: 5
     Type: Weapon
     TargetType: Self
     DamageFlags:
@@ -272,15 +272,15 @@ Body:
     Element: Fire
     SplashArea:
       - Level: 1
-        Area: 2
+        Area: 3
       - Level: 2
-        Area: 2
+        Area: 3
       - Level: 3
-        Area: 2
+        Area: 3
       - Level: 4
-        Area: 2
+        Area: 3
       - Level: 5
-        Area: 2
+        Area: 3
       - Level: 6
         Area: 2
       - Level: 7
@@ -2219,6 +2219,7 @@ Body:
         - Level: 10
           Amount: 50
       Weapon:
+        1hSword: true
         2hSword: true
     Status: TwoHandQuicken
   - Id: 61
@@ -2321,7 +2322,7 @@ Body:
   - Id: 64
     Name: KN_CAVALIERMASTERY
     Description: Cavalier Mastery
-    MaxLevel: 5
+    MaxLevel: 10
     Type: Weapon
   - Id: 65
     Name: PR_MACEMASTERY
@@ -3297,7 +3298,7 @@ Body:
       IsAutoShadowSpell: true
     Range: 9
     Hit: Multi_Hit
-    HitCount: -10
+    HitCount: -20
     Element: Wind
     CopyFlags:
       Skill:
@@ -3306,28 +3307,50 @@ Body:
     CastCancel: true
     CastTime:
       - Level: 1
-        Time: 15000
+        Time: 9600
       - Level: 2
-        Time: 14500
+        Time: 9280
       - Level: 3
-        Time: 14000
+        Time: 8960
       - Level: 4
-        Time: 13500
+        Time: 8640
       - Level: 5
-        Time: 13000
+        Time: 8320
       - Level: 6
-        Time: 12500
+        Time: 8000
       - Level: 7
-        Time: 12000
+        Time: 7680
       - Level: 8
-        Time: 11500
+        Time: 7360
       - Level: 9
-        Time: 11000
+        Time: 7040
       - Level: 10
-        Time: 10500
-    AfterCastActDelay: 5000
-    Duration1: 4000
-    Duration2: 30000
+        Time: 4500
+    AfterCastActDelay: 1000
+    Duration1: 1000
+    Duration2: 18000
+    Cooldown: 5000
+    FixedCastTime:
+      - Level: 1
+        Time: 2400
+      - Level: 2
+        Time: 2320
+      - Level: 3
+        Time: 2240
+      - Level: 4
+        Time: 2160
+      - Level: 5
+        Time: 2080
+      - Level: 6
+        Time: 2000
+      - Level: 7
+        Time: 1920
+      - Level: 8
+        Time: 1840
+      - Level: 9
+        Time: 1760
+      - Level: 10
+        Time: 1500
     Requires:
       SpCost:
         - Level: 1
@@ -3354,25 +3377,25 @@ Body:
       Id: Dummyskill
       Layout:
         - Level: 1
-          Size: 5
+          Size: 6
         - Level: 2
-          Size: 5
+          Size: 6
         - Level: 3
-          Size: 5
+          Size: 6
         - Level: 4
-          Size: 5
+          Size: 6
         - Level: 5
-          Size: 5
+          Size: 6
         - Level: 6
-          Size: 5
+          Size: 6
         - Level: 7
-          Size: 5
+          Size: 6
         - Level: 8
-          Size: 5
+          Size: 6
         - Level: 9
-          Size: 5
+          Size: 6
         - Level: 10
-          Size: 5
+          Size: 6
         - Level: 11
           Size: 7
       Range: 1
@@ -5307,7 +5330,7 @@ Body:
   - Id: 157
     Name: MG_ENERGYCOAT
     Description: Energy Coat
-    MaxLevel: 1
+    MaxLevel: 5
     Type: Magic
     TargetType: Self
     DamageFlags:
@@ -7103,6 +7126,7 @@ Body:
         - Level: 10
           Amount: 60
       Weapon:
+        1hSpear: true
         2hSpear: true
     Status: SpearQuicken
   - Id: 259
