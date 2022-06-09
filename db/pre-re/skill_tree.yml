@@ -546,7 +546,7 @@ Body:
         MaxLevel: 5
         Requires:
           - Name: WZ_EARTHSPIKE
-            Level: 3
+            Level: 1
       - Name: WZ_QUAGMIRE
         MaxLevel: 5
         Requires:
@@ -1023,8 +1023,8 @@ Body:
       Novice: true
       Mage: true
     Tree:
-#      - Name: WZ_ESTIMATION
-#        MaxLevel: 1
+      - Name: WZ_QUAGMIRE
+        MaxLevel: 5
 #      - Name: WZ_EARTHSPIKE
 #        MaxLevel: 5
 #        Requires:
@@ -1035,61 +1035,61 @@ Body:
 #        Requires:
 #          - Name: WZ_EARTHSPIKE
 #            Level: 1
-      - Name: SA_ADVANCEDBOOK
-        MaxLevel: 10
-      - Name: SA_CASTCANCEL
-        MaxLevel: 5
-        Requires:
-          - Name: SA_ADVANCEDBOOK
-            Level: 2
+#      - Name: SA_ADVANCEDBOOK
+#        MaxLevel: 10
+#      - Name: SA_CASTCANCEL
+#        MaxLevel: 5
+#        Requires:
+#          - Name: SA_ADVANCEDBOOK
+#            Level: 2
 #      - Name: SA_MAGICROD
 #        MaxLevel: 5
 #        Requires:
 #          - Name: SA_ADVANCEDBOOK
 #            Level: 4
-      - Name: SA_SPELLBREAKER
-        MaxLevel: 5
-        Requires:
-          - Name: SA_MAGICROD
-            Level: 1
-      - Name: SA_FREECAST
-        MaxLevel: 10
-        Requires:
-          - Name: SA_CASTCANCEL
-            Level: 1
-      - Name: SA_AUTOSPELL
-        MaxLevel: 10
-        Requires:
-          - Name: SA_FREECAST
-            Level: 4
-      - Name: SA_FLAMELAUNCHER
-        MaxLevel: 5
-        Requires:
-          - Name: MG_FIREBOLT
-            Level: 1
-          - Name: SA_ADVANCEDBOOK
-            Level: 5
-      - Name: SA_FROSTWEAPON
-        MaxLevel: 5
-        Requires:
-          - Name: MG_COLDBOLT
-            Level: 1
-          - Name: SA_ADVANCEDBOOK
-            Level: 5
-      - Name: SA_LIGHTNINGLOADER
-        MaxLevel: 5
-        Requires:
-          - Name: MG_LIGHTNINGBOLT
-            Level: 1
-          - Name: SA_ADVANCEDBOOK
-            Level: 5
-      - Name: SA_SEISMICWEAPON
-        MaxLevel: 5
-        Requires:
-          - Name: WZ_EARTHSPIKE
-            Level: 1
-          - Name: SA_ADVANCEDBOOK
-            Level: 5
+#      - Name: SA_SPELLBREAKER
+#        MaxLevel: 5
+#        Requires:
+#          - Name: SA_MAGICROD
+#            Level: 1
+#      - Name: SA_FREECAST
+#        MaxLevel: 10
+#        Requires:
+#          - Name: SA_CASTCANCEL
+#            Level: 1
+#      - Name: SA_AUTOSPELL
+#        MaxLevel: 10
+#        Requires:
+#          - Name: SA_FREECAST
+#            Level: 4
+#      - Name: SA_FLAMELAUNCHER
+#        MaxLevel: 5
+#        Requires:
+#          - Name: MG_FIREBOLT
+#            Level: 1
+#          - Name: SA_ADVANCEDBOOK
+#            Level: 5
+#      - Name: SA_FROSTWEAPON
+#        MaxLevel: 5
+#        Requires:
+#          - Name: MG_COLDBOLT
+#            Level: 1
+#          - Name: SA_ADVANCEDBOOK
+#            Level: 5
+#      - Name: SA_LIGHTNINGLOADER
+#        MaxLevel: 5
+#        Requires:
+#          - Name: MG_LIGHTNINGBOLT
+#            Level: 1
+#          - Name: SA_ADVANCEDBOOK
+#            Level: 5
+#      - Name: SA_SEISMICWEAPON
+#        MaxLevel: 5
+#        Requires:
+#          - Name: WZ_EARTHSPIKE
+#            Level: 1
+#          - Name: SA_ADVANCEDBOOK
+#            Level: 5
 #      - Name: SA_DRAGONOLOGY
 #        MaxLevel: 5
 #        Requires:
@@ -2413,36 +2413,25 @@ Body:
       Mage: true
       Sage: true
     Tree:
-      - Name: PF_HPCONVERSION
-        MaxLevel: 5
-        Requires:
-          - Name: MG_SRECOVERY
-            Level: 1
-          - Name: SA_MAGICROD
-            Level: 1
-      - Name: PF_SOULCHANGE
-        MaxLevel: 1
-        Requires:
-          - Name: SA_MAGICROD
-            Level: 3
-          - Name: SA_SPELLBREAKER
-            Level: 2
-      - Name: PF_SOULBURN
-        MaxLevel: 5
-        Requires:
-          - Name: SA_CASTCANCEL
-            Level: 5
-          - Name: SA_MAGICROD
-            Level: 3
-          - Name: SA_DISPELL
-            Level: 3
+#      - Name: PF_HPCONVERSION
+#        MaxLevel: 5
+#        Requires:
+#          - Name: MG_SRECOVERY
+#            Level: 1
+#          - Name: SA_MAGICROD
+#            Level: 1
+#      - Name: PF_SOULCHANGE
+#        MaxLevel: 1
+#        Requires:
+#          - Name: SA_MAGICROD
+#            Level: 3
+#          - Name: SA_SPELLBREAKER
+#            Level: 2
       - Name: PF_MINDBREAKER
         MaxLevel: 5
         Requires:
-          - Name: MG_SRECOVERY
+          - Name: SA_FREECAST
             Level: 3
-          - Name: PF_SOULBURN
-            Level: 1
       - Name: PF_MEMORIZE
         MaxLevel: 1
         Requires:
@@ -2450,25 +2439,23 @@ Body:
             Level: 5
           - Name: SA_FREECAST
             Level: 5
-          - Name: SA_AUTOSPELL
-            Level: 1
-      - Name: PF_FOGWALL
-        MaxLevel: 1
-        Requires:
-          - Name: SA_DELUGE
-            Level: 2
-          - Name: SA_VIOLENTGALE
-            Level: 2
-      - Name: PF_SPIDERWEB
-        MaxLevel: 1
-        Requires:
-          - Name: SA_DRAGONOLOGY
-            Level: 4
+#      - Name: PF_FOGWALL
+#        MaxLevel: 1
+#        Requires:
+#          - Name: SA_DELUGE
+#            Level: 2
+#          - Name: SA_VIOLENTGALE
+#            Level: 2
+#      - Name: PF_SPIDERWEB
+#        MaxLevel: 1
+#        Requires:
+#          - Name: SA_DRAGONOLOGY
+#            Level: 4
       - Name: PF_DOUBLECASTING
         MaxLevel: 5
         Requires:
-          - Name: SA_AUTOSPELL
-            Level: 1
+          - Name: SA_CASTCANCEL
+            Level: 3
   - Job: Stalker
     Inherit:
       Novice: true

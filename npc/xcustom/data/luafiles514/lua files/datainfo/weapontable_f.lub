@@ -52,5 +52,6 @@ function IsItemUsingArrow ( type )
 			return true
 		end
 	end
+
 	return false
 end

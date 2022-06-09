@@ -1439,10 +1439,6 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 		return 0;
 
 	switch (skill_id) {
-#ifndef RENEWAL
-		case PA_PRESSURE:
-		case HW_GRAVITATION:
-#endif
 		case SP_SOULEXPLOSION:
 			return damage; //These skills bypass everything else.
   }
@@ -3562,9 +3558,9 @@ static void battle_calc_skill_base_damage(struct Damage* wd, struct block_list *
 				if (index >= 0 &&
 					sd->inventory_data[index] &&
 					sd->inventory_data[index]->type == IT_WEAPON)
-					wd->damage = sd->inventory_data[index]->weight*8/100; //80% of weight
+					wd->damage = sd->inventory_data[index]->weight*10/100; //80% of weight
 
-				ATK_ADDRATE(wd->damage, wd->damage2, 50*skill_lv); //Skill modifier applies to weight only.
+				ATK_ADDRATE(wd->damage, wd->damage2, 60*skill_lv); //Skill modifier applies to weight only.
 			} else {
 				wd->damage = battle_calc_base_damage(src, sstatus, &sstatus->rhw, sc, tstatus->size, 0); //Monsters have no weight and use ATK instead
 			}
@@ -4067,7 +4063,7 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			skillratio += 30 * skill_lv;
 			break;
 		case CR_SHIELDCHARGE:
-			skillratio += 20 * skill_lv;
+			skillratio += 22 * skill_lv;
 			break;
 		case CR_SHIELDBOOMERANG:
 			skillratio += skill_lv * 80;
@@ -4182,7 +4178,6 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			if (wd->miscflag & BREAK_NECK || (tsc && tsc->data[SC_JOINTBEAT] && tsc->data[SC_JOINTBEAT]->val2 & BREAK_NECK)) // The 2x damage is only for the BREAK_NECK ailment.
 				skillratio <<= 1;
 			break;
-#ifdef RENEWAL
 		// Renewal: skill ratio applies to entire damage [helvetica]
 		case LK_SPIRALPIERCE:
 			skillratio += 50 + 50 * skill_lv;
@@ -4194,7 +4189,6 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			skillratio += 50 + 50 * skill_lv;
 			RE_LVL_DMOD(100);
 		break;
-#endif
 		case ASC_METEORASSAULT:
 #ifdef RENEWAL
 			skillratio += 100 + 120 * skill_lv;
@@ -4365,7 +4359,6 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			skillratio += 100 * (skill_lv - 1);
 #endif
 			break;
-#ifdef RENEWAL
 		case NJ_SYURIKEN:
 			skillratio += 5 * skill_lv;
 			break;
@@ -4378,17 +4371,6 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 		case AS_VENOMKNIFE:
 			skillratio += 400;
 			break;
-#else
-		case KN_CHARGEATK: { // +100% every 3 cells of distance but hard-limited to 500%
-				int k = (wd->miscflag-1)/3;
-				if (k < 0)
-					k = 0;
-				else if (k > 4)
-					k = 4;
-				skillratio += 100 * k;
-			}
-			break;
-#endif
 		case HT_PHANTASMIC:
 #ifdef RENEWAL
 			skillratio += 400;
@@ -5739,7 +5721,7 @@ static void battle_calc_attack_post_defense(struct Damage* wd, struct block_list
 	if( sc ) { // SC skill damages
 		if(sc->data[SC_AURABLADE]
 		) {
-			ATK_ADD(wd->damage, wd->damage2, (3 + sc->data[SC_AURABLADE]->val1) * status_get_lv(src)); // !TODO: Confirm formula
+			ATK_ADD(wd->damage, wd->damage2, (4 + sc->data[SC_AURABLADE]->val1) * status_get_lv(src)); // !TODO: Confirm formula
 		}
 	}
 
@@ -6157,7 +6139,6 @@ static struct Damage initialize_weapon_data(struct block_list *src, struct block
 			case TK_TURNKICK:
 				wd.blewcount = 0;
 				break;
-#ifndef RENEWAL
 			case KN_BOWLINGBASH:
 				if (sd && sd->status.weapon == W_2HSWORD) {
 					if (wd.miscflag >= 2 && wd.miscflag <= 3)
@@ -6166,7 +6147,6 @@ static struct Damage initialize_weapon_data(struct block_list *src, struct block
 						wd.div_ = 4;
 				}
 				break;
-#endif
 			case KN_AUTOCOUNTER:
 				wd.flag = (wd.flag&~BF_SKILLMASK)|BF_NORMAL;
 				break;
@@ -6924,9 +6904,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						break;
 					case MG_THUNDERSTORM:
 						// in Renewal Thunder Storm boost is 100% (in pre-re, 80%)
-#ifndef RENEWAL
 						skillratio -= 20;
-#endif
 						break;
 					case MG_FROSTDIVER:
 						skillratio += 10 * skill_lv;
@@ -6954,27 +6932,17 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						skillratio += 30 * skill_lv;
 						break;
 					case WZ_STORMGUST:
-#ifdef RENEWAL
 						skillratio -= 30; // Offset only once
 						skillratio += 50 * skill_lv;
-#else
-						skillratio += 40 * skill_lv;
-#endif
 						break;
-#ifdef RENEWAL
 					case WZ_EARTHSPIKE:
 						skillratio += 100;
 						if (sc && sc->data[SC_EARTH_CARE_OPTION])
 							skillratio += skillratio * 80 / 100;
 						break;
-#endif
 					case HW_NAPALMVULCAN:
-#ifdef RENEWAL
 						skillratio += -100 + 70 * skill_lv;
 						RE_LVL_DMOD(100);
-#else
-						skillratio += 25;
-#endif
 						break;
 					case SL_STIN: //Target size must be small (0) for full damage
 						skillratio += (tstatus->size != SZ_SMALL ? -99 : 10 * skill_lv);
@@ -7881,13 +7849,6 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 			md.damage = 500 + rnd()%500 + 5 * skill_lv * sstatus->int_;
 			nk.set(NK_IGNOREFLEE);
 			nk.set(NK_IGNOREELEMENT); //These two are not properties of the weapon based part.
-			break;
-		case HW_GRAVITATION:
-			md.damage = 200 + 200 * skill_lv;
-			md.dmotion = 0; //No flinch animation
-			break;
-		case PA_PRESSURE:
-			md.damage = 500 + 300 * skill_lv;
 			break;
 #endif
 		case PA_GOSPEL:

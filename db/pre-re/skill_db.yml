@@ -572,28 +572,9 @@ Body:
         Plagiarism: true
         Reproduce: true
     CastCancel: true
-    CastTime: 500
-    AfterCastActDelay:
-      - Level: 1
-        Time: 1200
-      - Level: 2
-        Time: 1000
-      - Level: 3
-        Time: 1400
-      - Level: 4
-        Time: 1200
-      - Level: 5
-        Time: 1600
-      - Level: 6
-        Time: 1400
-      - Level: 7
-        Time: 1800
-      - Level: 8
-        Time: 1600
-      - Level: 9
-        Time: 2000
-      - Level: 10
-        Time: 1800
+    CastTime: 400
+    AfterCastActDelay: 1400
+    FixedCastTime: 100
     Requires:
       SpCost:
         - Level: 1
@@ -655,46 +636,47 @@ Body:
     CastCancel: true
     CastTime:
       - Level: 1
-        Time: 700
+        Time: 640
       - Level: 2
-        Time: 1400
+        Time: 960
       - Level: 3
-        Time: 2100
-      - Level: 4
-        Time: 2800
-      - Level: 5
-        Time: 3500
-      - Level: 6
-        Time: 4200
-      - Level: 7
-        Time: 4900
-      - Level: 8
-        Time: 5600
-      - Level: 9
-        Time: 6300
-      - Level: 10
-        Time: 7000
-    AfterCastActDelay:
-      - Level: 1
-        Time: 1000
-      - Level: 2
-        Time: 1200
-      - Level: 3
-        Time: 1400
+        Time: 1280
       - Level: 4
         Time: 1600
       - Level: 5
-        Time: 1800
+        Time: 1920
       - Level: 6
-        Time: 2000
+        Time: 2100
       - Level: 7
-        Time: 2200
+        Time: 1560
       - Level: 8
-        Time: 2400
+        Time: 2880
       - Level: 9
-        Time: 2600
+        Time: 3200
       - Level: 10
-        Time: 2800
+        Time: 3200
+    AfterCastActDelay: 300
+    FixedCastTime:
+      - Level: 1
+        Time: 160
+      - Level: 2
+        Time: 240
+      - Level: 3
+        Time: 320
+      - Level: 4
+        Time: 400
+      - Level: 5
+        Time: 480
+      - Level: 6
+        Time: 700
+      - Level: 7
+        Time: 640
+      - Level: 8
+        Time: 720
+      - Level: 9
+        Time: 800
+      - Level: 10
+        Time: 1200
     Requires:
       SpCost:
         - Level: 1
@@ -845,48 +827,9 @@ Body:
         Plagiarism: true
         Reproduce: true
     CastCancel: true
-    CastTime:
-      - Level: 1
-        Time: 1500
-      - Level: 2
-        Time: 1500
-      - Level: 3
-        Time: 1500
-      - Level: 4
-        Time: 1500
-      - Level: 5
-        Time: 1500
-      - Level: 6
-        Time: 1000
-      - Level: 7
-        Time: 1000
-      - Level: 8
-        Time: 1000
-      - Level: 9
-        Time: 1000
-      - Level: 10
-        Time: 1000
-    AfterCastActDelay:
-      - Level: 1
-        Time: 1500
-      - Level: 2
-        Time: 1500
-      - Level: 3
-        Time: 1500
-      - Level: 4
-        Time: 1500
-      - Level: 5
-        Time: 1500
-      - Level: 6
-        Time: 1000
-      - Level: 7
-        Time: 1000
-      - Level: 8
-        Time: 1000
-      - Level: 9
-        Time: 1000
-      - Level: 10
-        Time: 1000
+    CastTime: 800
+    AfterCastActDelay: 700
+    FixedCastTime: 200
     Requires:
       SpCost: 25
   - Id: 18
@@ -910,25 +853,25 @@ Body:
     CastCancel: true
     CastTime:
       - Level: 1
-        Time: 2000
+        Time: 1600
       - Level: 2
-        Time: 1850
+        Time: 1440
       - Level: 3
-        Time: 1700
+        Time: 1280
       - Level: 4
-        Time: 1550
+        Time: 1120
       - Level: 5
-        Time: 1400
+        Time: 960
       - Level: 6
-        Time: 1250
+        Time: 880
       - Level: 7
-        Time: 1100
-      - Level: 8
-        Time: 950
-      - Level: 9
         Time: 800
+      - Level: 8
+        Time: 720
+      - Level: 9
+        Time: 640
       - Level: 10
-        Time: 650
+        Time: 560
     Duration1:
       - Level: 1
         Time: 5000
@@ -950,6 +893,27 @@ Body:
         Time: 13000
       - Level: 10
         Time: 14000
+    FixedCastTime:
+      - Level: 1
+        Time: 400
+      - Level: 2
+        Time: 360
+      - Level: 3
+        Time: 320
+      - Level: 4
+        Time: 280
+      - Level: 5
+        Time: 240
+      - Level: 6
+        Time: 220
+      - Level: 7
+        Time: 200
+      - Level: 8
+        Time: 180
+      - Level: 9
+        Time: 160
+      - Level: 10
+        Time: 140
     Requires:
       SpCost: 40
     Unit:
@@ -999,46 +963,47 @@ Body:
     CastCancel: true
     CastTime:
       - Level: 1
-        Time: 700
+        Time: 640
       - Level: 2
-        Time: 1400
+        Time: 960
       - Level: 3
-        Time: 2100
-      - Level: 4
-        Time: 2800
-      - Level: 5
-        Time: 3500
-      - Level: 6
-        Time: 4200
-      - Level: 7
-        Time: 4900
-      - Level: 8
-        Time: 5600
-      - Level: 9
-        Time: 6300
-      - Level: 10
-        Time: 7000
-    AfterCastActDelay:
-      - Level: 1
-        Time: 1000
-      - Level: 2
-        Time: 1200
-      - Level: 3
-        Time: 1400
+        Time: 1280
       - Level: 4
         Time: 1600
       - Level: 5
-        Time: 1800
+        Time: 1920
       - Level: 6
-        Time: 2000
+        Time: 2100
       - Level: 7
-        Time: 2200
+        Time: 1560
       - Level: 8
-        Time: 2400
+        Time: 2880
       - Level: 9
-        Time: 2600
+        Time: 3200
       - Level: 10
-        Time: 2800
+        Time: 3200
+    AfterCastActDelay: 300
+    FixedCastTime:
+      - Level: 1
+        Time: 160
+      - Level: 2
+        Time: 240
+      - Level: 3
+        Time: 320
+      - Level: 4
+        Time: 400
+      - Level: 5
+        Time: 480
+      - Level: 6
+        Time: 700
+      - Level: 7
+        Time: 640
+      - Level: 8
+        Time: 720
+      - Level: 9
+        Time: 800
+      - Level: 10
+        Time: 1200
     Requires:
       SpCost:
         - Level: 1
@@ -1100,46 +1065,47 @@ Body:
     CastCancel: true
     CastTime:
       - Level: 1
-        Time: 700
+        Time: 640
       - Level: 2
-        Time: 1400
+        Time: 960
       - Level: 3
-        Time: 2100
-      - Level: 4
-        Time: 2800
-      - Level: 5
-        Time: 3500
-      - Level: 6
-        Time: 4200
-      - Level: 7
-        Time: 4900
-      - Level: 8
-        Time: 5600
-      - Level: 9
-        Time: 6300
-      - Level: 10
-        Time: 7000
-    AfterCastActDelay:
-      - Level: 1
-        Time: 1000
-      - Level: 2
-        Time: 1200
-      - Level: 3
-        Time: 1400
+        Time: 1280
       - Level: 4
         Time: 1600
       - Level: 5
-        Time: 1800
+        Time: 1920
       - Level: 6
-        Time: 2000
+        Time: 2100
       - Level: 7
-        Time: 2200
+        Time: 1560
       - Level: 8
-        Time: 2400
+        Time: 2880
       - Level: 9
-        Time: 2600
+        Time: 3200
       - Level: 10
-        Time: 2800
+        Time: 3200
+    AfterCastActDelay: 300
+    FixedCastTime:
+      - Level: 1
+        Time: 160
+      - Level: 2
+        Time: 240
+      - Level: 3
+        Time: 320
+      - Level: 4
+        Time: 400
+      - Level: 5
+        Time: 480
+      - Level: 6
+        Time: 700
+      - Level: 7
+        Time: 640
+      - Level: 8
+        Time: 720
+      - Level: 9
+        Time: 800
+      - Level: 10
+        Time: 1200
     Requires:
       SpCost:
         - Level: 1
@@ -1201,27 +1167,48 @@ Body:
     CastCancel: true
     CastTime:
       - Level: 1
-        Time: 1000
+        Time: 640
       - Level: 2
-        Time: 2000
+        Time: 1280
       - Level: 3
-        Time: 3000
+        Time: 1920
       - Level: 4
-        Time: 4000
+        Time: 2560
       - Level: 5
-        Time: 5000
+        Time: 3200
       - Level: 6
-        Time: 6000
+        Time: 3840
       - Level: 7
-        Time: 7000
+        Time: 4480
       - Level: 8
-        Time: 8000
+        Time: 5120
       - Level: 9
-        Time: 9000
+        Time: 5760
       - Level: 10
-        Time: 10000
+        Time: 4500
     AfterCastActDelay: 2000
     Duration1: 100
+    FixedCastTime:
+      - Level: 1
+        Time: 160
+      - Level: 2
+        Time: 320
+      - Level: 3
+        Time: 480
+      - Level: 4
+        Time: 640
+      - Level: 5
+        Time: 800
+      - Level: 6
+        Time: 960
+      - Level: 7
+        Time: 1120
+      - Level: 8
+        Time: 1280
+      - Level: 9
+        Time: 1440
+      - Level: 10
+        Time: 1500
     Requires:
       SpCost:
         - Level: 1
@@ -3063,25 +3050,25 @@ Body:
     Hit: Multi_Hit
     HitCount:
       - Level: 1
-        Count: 1
+        Count: 2
       - Level: 2
-        Count: 1
+        Count: 3
       - Level: 3
-        Count: 2
+        Count: 3
       - Level: 4
-        Count: 2
+        Count: 4
       - Level: 5
-        Count: 3
+        Count: 4
       - Level: 6
-        Count: 3
+        Count: 5
       - Level: 7
-        Count: 4
+        Count: 5
       - Level: 8
-        Count: 4
+        Count: 6
       - Level: 9
-        Count: 5
+        Count: 6
       - Level: 10
-        Count: 5
+        Count: 7
       - Level: 11
         Count: 15
     Element: Fire
@@ -3113,28 +3100,28 @@ Body:
         Plagiarism: true
         Reproduce: true
     CastCancel: true
-    CastTime: 15000
-    AfterCastActDelay:
+    CastTime:
       - Level: 1
-        Time: 2000
+        Time: 9600
       - Level: 2
-        Time: 3000
+        Time: 9600
       - Level: 3
-        Time: 3000
+        Time: 9600
       - Level: 4
-        Time: 4000
+        Time: 9600
       - Level: 5
-        Time: 4000
+        Time: 9600
       - Level: 6
-        Time: 5000
+        Time: 9600
       - Level: 7
-        Time: 5000
+        Time: 9600
       - Level: 8
-        Time: 6000
+        Time: 9600
       - Level: 9
-        Time: 6000
+        Time: 9600
       - Level: 10
-        Time: 7000
+        Time: 6300
+    AfterCastActDelay: 1000
     Duration1:
       - Level: 1
         Time: 2000
@@ -3156,7 +3143,29 @@ Body:
         Time: 6000
       - Level: 10
         Time: 7000
-    Duration2: 5000
+    Duration2: 4500
+    Cooldown: 7000
+    FixedCastTime:
+      - Level: 1
+        Time: 2400
+      - Level: 2
+        Time: 2400
+      - Level: 3
+        Time: 2400
+      - Level: 4
+        Time: 2400
+      - Level: 5
+        Time: 2400
+      - Level: 6
+        Time: 2400
+      - Level: 7
+        Time: 2400
+      - Level: 8
+        Time: 2400
+      - Level: 9
+        Time: 2400
+      - Level: 10
+        Time: 1500
     Requires:
       SpCost:
         - Level: 1
@@ -3247,25 +3256,46 @@ Body:
     CastCancel: true
     CastTime:
       - Level: 1
-        Time: 2500
+        Time: 1600
       - Level: 2
-        Time: 3000
+        Time: 1920
       - Level: 3
-        Time: 3500
+        Time: 2240
       - Level: 4
-        Time: 4000
+        Time: 2560
       - Level: 5
-        Time: 4500
+        Time: 2880
       - Level: 6
-        Time: 5000
+        Time: 3200
       - Level: 7
-        Time: 5500
+        Time: 3520
       - Level: 8
-        Time: 6000
+        Time: 3840
       - Level: 9
-        Time: 6500
+        Time: 4160
       - Level: 10
-        Time: 7000
+        Time: 3800
+    FixedCastTime:
+      - Level: 1
+        Time: 400
+      - Level: 2
+        Time: 480
+      - Level: 3
+        Time: 560
+      - Level: 4
+        Time: 640
+      - Level: 5
+        Time: 720
+      - Level: 6
+        Time: 800
+      - Level: 7
+        Time: 880
+      - Level: 8
+        Time: 960
+      - Level: 9
+        Time: 1040
+      - Level: 10
+        Time: 500
     Requires:
       SpCost:
         - Level: 1
@@ -3537,26 +3567,26 @@ Body:
     CastCancel: true
     CastTime:
       - Level: 1
-        Time: 6000
+        Time: 640
       - Level: 2
-        Time: 6000
+        Time: 640
       - Level: 3
-        Time: 5500
+        Time: 576
       - Level: 4
-        Time: 5500
+        Time: 576
       - Level: 5
-        Time: 5000
+        Time: 512
       - Level: 6
-        Time: 5000
+        Time: 512
       - Level: 7
-        Time: 4500
+        Time: 448
       - Level: 8
-        Time: 4500
+        Time: 448
       - Level: 9
-        Time: 4000
+        Time: 384
       - Level: 10
-        Time: 4000
-    AfterCastActDelay: 1000
+        Time: 384
+    AfterCastActDelay: 200
     Duration2:
       - Level: 1
         Time: 1500
@@ -3578,6 +3608,27 @@ Body:
         Time: 13500
       - Level: 10
         Time: 15000
+    FixedCastTime:
+      - Level: 1
+        Time: 160
+      - Level: 2
+        Time: 160
+      - Level: 3
+        Time: 144
+      - Level: 4
+        Time: 144
+      - Level: 5
+        Time: 128
+      - Level: 6
+        Time: 128
+      - Level: 7
+        Time: 112
+      - Level: 8
+        Time: 112
+      - Level: 9
+        Time: 96
+      - Level: 10
+        Time: 96
     Requires:
       SpCost:
         - Level: 1
@@ -3621,28 +3672,50 @@ Body:
     CastCancel: true
     CastTime:
       - Level: 1
-        Time: 6000
+        Time: 3840
       - Level: 2
-        Time: 7000
+        Time: 4480
       - Level: 3
-        Time: 8000
+        Time: 5120
       - Level: 4
-        Time: 9000
+        Time: 5760
       - Level: 5
-        Time: 10000
+        Time: 6400
       - Level: 6
-        Time: 11000
+        Time: 7040
       - Level: 7
-        Time: 12000
+        Time: 7680
       - Level: 8
-        Time: 13000
+        Time: 8320
       - Level: 9
-        Time: 14000
+        Time: 8960
       - Level: 10
-        Time: 15000
-    AfterCastActDelay: 5000
-    Duration1: 4600
-    Duration2: 12000
+        Time: 6300
+    AfterCastActDelay: 1000
+    Duration1: 4500
+    Duration2: 27000
+    Cooldown: 6000
+    FixedCastTime:
+      - Level: 1
+        Time: 960
+      - Level: 2
+        Time: 1120
+      - Level: 3
+        Time: 1280
+      - Level: 4
+        Time: 1440
+      - Level: 5
+        Time: 1600
+      - Level: 6
+        Time: 1760
+      - Level: 7
+        Time: 1920
+      - Level: 8
+        Time: 2080
+      - Level: 9
+        Time: 2240
+      - Level: 10
+        Time: 1500
     Requires:
       SpCost: 78
     Unit:
@@ -3684,28 +3757,59 @@ Body:
     CastCancel: true
     CastTime:
       - Level: 1
+        Time: 448
+      - Level: 2
+        Time: 896
+      - Level: 3
+        Time: 1344
+      - Level: 4
+        Time: 1792
+      - Level: 5
+        Time: 3200
+    AfterCastActDelay:
+      - Level: 1
         Time: 1000
       - Level: 2
-        Time: 2000
+        Time: 1200
       - Level: 3
-        Time: 3000
+        Time: 1400
       - Level: 4
-        Time: 4000
+        Time: 1600
       - Level: 5
-        Time: 5000
-    AfterCastActDelay: 700
+        Time: 1400
+      - Level: 6
+        Time: 2000
+      - Level: 7
+        Time: 2200
+      - Level: 8
+        Time: 2400
+      - Level: 9
+        Time: 2600
+      - Level: 10
+        Time: 2800
+    FixedCastTime:
+      - Level: 1
+        Time: 112
+      - Level: 2
+        Time: 224
+      - Level: 3
+        Time: 336
+      - Level: 4
+        Time: 448
+      - Level: 5
+        Time: 1200
     Requires:
       SpCost:
         - Level: 1
-          Amount: 12
-        - Level: 2
           Amount: 14
-        - Level: 3
-          Amount: 16
-        - Level: 4
+        - Level: 2
           Amount: 18
+        - Level: 3
+          Amount: 22
+        - Level: 4
+          Amount: 26
         - Level: 5
-          Amount: 20
+          Amount: 30
   - Id: 91
     Name: WZ_HEAVENDRIVE
     Description: Heaven's Drive
@@ -3736,17 +3840,38 @@ Body:
     CastCancel: true
     CastTime:
       - Level: 1
+        Time: 640
+      - Level: 2
+        Time: 1280
+      - Level: 3
+        Time: 1920
+      - Level: 4
+        Time: 2560
+      - Level: 5
+        Time: 1900
+    AfterCastActDelay:
+      - Level: 1
         Time: 1000
       - Level: 2
-        Time: 2000
+        Time: 1000
       - Level: 3
-        Time: 3000
+        Time: 1000
       - Level: 4
-        Time: 4000
+        Time: 1000
       - Level: 5
-        Time: 5000
-    AfterCastActDelay: 700
+        Time: 500
     Duration1: 100
+    FixedCastTime:
+      - Level: 1
+        Time: 160
+      - Level: 2
+        Time: 320
+      - Level: 3
+        Time: 480
+      - Level: 4
+        Time: 640
+      - Level: 5
+        Time: 800
     Requires:
       SpCost:
         - Level: 1
@@ -5335,8 +5460,6 @@ Body:
     TargetType: Self
     DamageFlags:
       NoDamage: true
-    Flags:
-      IsQuest: true
     Hit: Single
     HitCount: 1
     CastCancel: true
@@ -7582,28 +7705,7 @@ Body:
   - Id: 276
     Name: SA_MAGICROD
     Description: Magic Rod
-    MaxLevel: 5
-    Type: Magic
-    TargetType: Self
-    DamageFlags:
-      NoDamage: true
-    Hit: Single
-    HitCount: 1
-    CastCancel: true
-    Duration1:
-      - Level: 1
-        Time: 400
-      - Level: 2
-        Time: 600
-      - Level: 3
-        Time: 800
-      - Level: 4
-        Time: 1000
-      - Level: 5
-        Time: 1200
-    Requires:
-      SpCost: 2
-    Status: MagicRod
+    MaxLevel: 10
   - Id: 277
     Name: SA_SPELLBREAKER
     Description: Spell Breaker
@@ -13195,61 +13297,50 @@ Body:
     Name: HW_GRAVITATION
     Description: Gravitation Field
     MaxLevel: 5
-    Type: Misc
+    Type: Magic
     TargetType: Ground
-    DamageFlags:
-      NoDamage: true
-      IgnoreElement: true
-      IgnoreFlee: true
-      IgnoreDefCard: true
     Flags:
-      IgnoreBgReduction: true
-      IgnoreGvgReduction: true
       TargetEmperium: true
       IgnoreHovering: true
       TargetHidden: true
     Range: 18
-    Hit: Single
-    HitCount: 1
-    Element: Earth
+    Hit: Multi_Hit
+    HitCount:
+      - Level: 1
+        Count: 2
+      - Level: 2
+        Count: 4
+      - Level: 3
+        Count: 6
+      - Level: 4
+        Count: 8
+      - Level: 5
+        Count: 10
     CastCancel: true
     CastTime: 5000
-    AfterCastActDelay: 2000
-    Duration1:
-      - Level: 1
-        Time: 5000
-      - Level: 2
-        Time: 6000
-      - Level: 3
-        Time: 7000
-      - Level: 4
-        Time: 8000
-      - Level: 5
-        Time: 9000
+    AfterCastActDelay: 1000
+    Duration1: 100
+    Cooldown: 5000
+    FixedCastTime: 1000
     Requires:
       SpCost:
         - Level: 1
-          Amount: 20
-        - Level: 2
-          Amount: 40
-        - Level: 3
           Amount: 60
-        - Level: 4
+        - Level: 2
+          Amount: 70
+        - Level: 3
           Amount: 80
+        - Level: 4
+          Amount: 90
         - Level: 5
           Amount: 100
-      ItemCost:
-        - Item: Blue_Gemstone
-          Amount: 1
     Unit:
       Id: Gravitation
-      Layout: 2
-      Interval: 1000
+      Range: 2
+      Interval: 5100 #Using 5s causes a rare bug where another hit occurs at the end
       Target: Enemy
       Flag:
-        NoOverlap: true
         PathCheck: true
-        DualMode: true
         RemovedByFireRain: true
     Status: Gravitation
   - Id: 485

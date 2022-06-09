@@ -1440,7 +1440,7 @@ int skill_additional_effect(struct block_list* src, struct block_list *bl, uint1
 		break;
 
 	case MG_FROSTDIVER:
-		if(!sc_start(src,bl,SC_FREEZE,min(skill_lv*3+35,skill_lv+60),skill_lv,skill_get_time2(skill_id,skill_lv)) && sd)
+		if(!sc_start(src,bl,SC_FREEZE,min(skill_lv*5+33,skill_lv+60),skill_lv,skill_get_time2(skill_id,skill_lv)) && sd)
 			clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 		break;
 
@@ -1450,17 +1450,7 @@ int skill_additional_effect(struct block_list* src, struct block_list *bl, uint1
 
 	case WZ_STORMGUST:
 		// Storm Gust counter was dropped in renewal
-#ifdef RENEWAL
 		sc_start(src,bl,SC_FREEZE,65-(5*skill_lv),skill_lv,skill_get_time2(skill_id,skill_lv));
-#else
-		//On third hit, there is a 150% to freeze the target
-		if(tsc->sg_counter >= 3 &&
-			sc_start(src,bl,SC_FREEZE,150,skill_lv,skill_get_time2(skill_id,skill_lv)))
-			tsc->sg_counter = 0;
-		// Being it only resets on success it'd keep stacking and eventually overflowing on mvps, so we reset at a high value
-		else if( tsc->sg_counter > 250 )
-			tsc->sg_counter = 0;
-#endif
 		break;
 
 	case NPC_STORMGUST2:
@@ -1554,17 +1544,6 @@ int skill_additional_effect(struct block_list* src, struct block_list *bl, uint1
 	case CR_SHIELDCHARGE:
 		sc_start(src,bl,SC_STUN,(15+skill_lv*5),skill_lv,skill_get_time2(skill_id,skill_lv));
 		break;
-
-#ifndef RENEWAL
-	case PA_PRESSURE:
-		status_percent_damage(src, bl, 0, 15+5*skill_lv, false);
-		//Fall through
-	case HW_GRAVITATION:
-		//Pressure and Gravitation can trigger physical autospells
-		attack_type |= BF_NORMAL;
-		attack_type |= BF_WEAPON;
-		break;
-#endif
 
 	case RG_RAID:
 		sc_start(src,bl,SC_STUN,(10+3*skill_lv),skill_lv,skill_get_time(skill_id,skill_lv));
@@ -2314,10 +2293,8 @@ int skill_additional_effect(struct block_list* src, struct block_list *bl, uint1
 
 			if (skill == PF_SPIDERWEB) //Special case, due to its nature of coding.
 				type = CAST_GROUND;
-#ifndef RENEWAL
 			else if (skill == AS_SONICBLOW)
 				pc_stop_attack(sd); //Special case, Sonic Blow autospell should stop the player attacking.
-#endif
 
 			sd->state.autocast = 1;
 			skill_consume_requirement(sd,skill,autospl_skill_lv,1);
@@ -3461,11 +3438,6 @@ int64 skill_attack (int attack_type, struct block_list* src, struct block_list *
 	if (tsc && tsc->data[SC_TRICKDEAD])
 		return 0;
 
-#ifndef RENEWAL
-	//When Gravitational Field is active, damage can only be dealt by Gravitational Field and Autospells
-	if(sd && sc && sc->data[SC_GRAVITATION] && sc->data[SC_GRAVITATION]->val3 == BCT_SELF && skill_id != HW_GRAVITATION && !sd->state.autocast)
-		return 0;
-#endif
 
 	dmg = battle_calc_attack(attack_type,src,bl,skill_id,skill_lv,flag&0xFFF);
 
@@ -3845,9 +3817,6 @@ int64 skill_attack (int attack_type, struct block_list* src, struct block_list *
 	// Instant damage
 	if( !dmg.amotion ) {
 		if( (!tsc || (!tsc->data[SC_DEVOTION] && skill_id != CR_REFLECTSHIELD && !tsc->data[SC_WATER_SCREEN_OPTION])
-#ifndef RENEWAL
-			|| skill_id == HW_GRAVITATION
-#endif
 			|| skill_id == NPC_EVILLAND) && !shadow_flag )
 			status_fix_damage(src,bl,damage,dmg.dmotion,skill_id); //Deal damage before knockback to allow stuff like firewall+storm gust combo.
 		if( !status_isdead(bl) && additional_effects )
@@ -3872,9 +3841,6 @@ int64 skill_attack (int attack_type, struct block_list* src, struct block_list *
 	}
 
 	if (tsc  && skill_id != NPC_EVILLAND && skill_id != SP_SOULEXPLOSION && skill_id != SJ_NOVAEXPLOSING
-#ifndef RENEWAL
-		&& skill_id != PA_PRESSURE && skill_id != HW_GRAVITATION
-#endif
 		) {
 		if (tsc->data[SC_DEVOTION]) {
 			struct status_change_entry *sce = tsc->data[SC_DEVOTION];
@@ -7419,20 +7385,8 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 			clif_skill_nodamage(src,bl,skill_id,skill_lv,0);
 			break;
 		}
-#ifdef RENEWAL
+
 		clif_skill_nodamage(src, bl, skill_id, skill_lv, sc_start(src, bl, type, 100, skill_lv, skill_get_time(skill_id, skill_lv)));
-#else
-		// 100% success rate at lv4 & 5, but lasts longer at lv5
-		if(!clif_skill_nodamage(src,bl,skill_id,skill_lv, sc_start(src,bl,type,(60+skill_lv*10),skill_lv, skill_get_time(skill_id,skill_lv)))) {
-			if (dstsd){
-				short index = dstsd->equip_index[EQI_HAND_R];
-				if (index != -1 && dstsd->inventory_data[index] && dstsd->inventory_data[index]->type == IT_WEAPON)
-					pc_unequipitem(dstsd, index, 3); //Must unequip the weapon instead of breaking it [Daegaladh]
-			}
-			if (sd)
-				clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
-		}
-#endif
 		break;
 
 	case PR_ASPERSIO:
@@ -13250,9 +13204,7 @@ int skill_castend_pos2(struct block_list* src, int x, int y, uint16 skill_id, ui
 	case NJ_HYOUSYOURAKU:
 	case NJ_RAIGEKISAI:
 	case NJ_KAMAITACHI:
-#ifdef RENEWAL
 	case HW_GRAVITATION:
-#endif
 	case NPC_EVILLAND:
 	case NPC_VENOMFOG:
 	case NPC_COMET:
@@ -13536,13 +13488,6 @@ int skill_castend_pos2(struct block_list* src, int x, int y, uint16 skill_id, ui
 		}
 		break;
 
-#ifndef RENEWAL
-	case HW_GRAVITATION:
-		if ((sg = skill_unitsetting(src,skill_id,skill_lv,x,y,0)))
-			sc_start4(src,src,type,100,skill_lv,0,BCT_SELF,sg->group_id,skill_get_time(skill_id,skill_lv));
-		flag|=1;
-		break;
-#endif
 
 	// Plant Cultivation [Celest]
 	case CR_CULTIVATION:
@@ -14600,12 +14545,6 @@ std::shared_ptr<s_skill_unit_group> skill_unitsetting(struct block_list *src, ui
 			pc_delspiritcharm(sd,sd->spiritcharm,sd->spiritcharm_type);
 		}
 		break;
-#ifndef RENEWAL
-	case HW_GRAVITATION:
-		if(sc && sc->data[SC_GRAVITATION] && sc->data[SC_GRAVITATION]->val3 == BCT_SELF)
-			link_group_id = sc->data[SC_GRAVITATION]->val4;
-		break;
-#endif
 	case SO_VACUUM_EXTREME:
 		// Coordinates
 		val1 = x;
@@ -15066,26 +15005,6 @@ static int skill_unit_onplace(struct skill_unit *unit, struct block_list *bl, t_
 					skill_additional_effect (ss, bl, sg->skill_id, sg->skill_lv, BF_MISC, ATK_DEF, tick);
 			}
 			break;
-
-#ifndef RENEWAL
-		case UNT_GRAVITATION:
-			if (!sce)
-				sc_start4(ss, bl,type,100,sg->skill_lv,0,BCT_ENEMY,sg->group_id,sg->limit);
-			break;
-
-		case UNT_BASILICA:
-			{
-				int i = battle_check_target(bl, bl, BCT_ENEMY);
-
-				if (i > 0) {
-					skill_blown(ss, bl, skill_get_blewcount(skill_id, sg->skill_lv), unit_getdir(bl), BLOWN_NONE);
-					break;
-				}
-				if (!sce && i <= 0)
-					sc_start4(ss, bl, type, 100, 0, 0, sg->group_id, ss->id, sg->limit);
-			}
-			break;
-#endif
 
 		case UNT_MOONLIT:
 			//Knockback out of area if affected char isn't in Moonlit effect
@@ -16089,10 +16008,6 @@ int skill_unit_onleft(uint16 skill_id, struct block_list *bl, t_tick tick)
 		case SA_DELUGE:
 		case SA_VIOLENTGALE:
 		case CG_HERMODE:
-#ifndef RENEWAL
-		case HW_GRAVITATION:
-		case HP_BASILICA:
-#endif
 		case NJ_SUITON:
 		case SC_MAELSTROM:
 		case EL_WATER_BARRIER:
@@ -18972,12 +18887,10 @@ int skill_autospell(struct map_session_data *sd, uint16 skill_id)
 	if (skill_lv == 0 || lv == 0)
 		return 0; // Player must learn the skill before doing auto-spell [Lance]
 
-#ifdef RENEWAL
 	if ((skill_id == MG_COLDBOLT || skill_id == MG_FIREBOLT || skill_id == MG_LIGHTNINGBOLT) && sd->sc.data[SC_SPIRIT] && sd->sc.data[SC_SPIRIT]->val2 == SL_SAGE)
 		maxlv = 10; //Soul Linker bonus. [Skotlex]
 	else
 		maxlv = skill_lv / 2; // Half of Autospell's level unless player learned a lower level (capped below)
-#else
 	if(skill_id==MG_NAPALMBEAT)	maxlv=3;
 	else if(skill_id==MG_COLDBOLT || skill_id==MG_FIREBOLT || skill_id==MG_LIGHTNINGBOLT){
 		if (sd->sc.data[SC_SPIRIT] && sd->sc.data[SC_SPIRIT]->val2 == SL_SAGE)
@@ -18997,7 +18910,6 @@ int skill_autospell(struct map_session_data *sd, uint16 skill_id)
 	}
 	else if(skill_id==MG_FROSTDIVER) maxlv=1;
 	else return 0;
-#endif
 
 	maxlv = min(lv, maxlv);
 
@@ -19548,10 +19460,6 @@ static int skill_cell_overlap(struct block_list *bl, va_list ap)
 			}
 			break;
 		case WZ_ICEWALL:
-#ifndef RENEWAL
-		case HP_BASILICA:
-		case HW_GRAVITATION:
-#endif
 			//These can't be placed on top of themselves (duration can't be refreshed)
 			if (unit->group->skill_id == skill_id)
 			{

@@ -5576,7 +5576,7 @@ Body:
   - Id: 157
     Name: MG_ENERGYCOAT
     Description: Energy Coat
-    MaxLevel: 1
+    MaxLevel: 5
     Type: Magic
     TargetType: Self
     DamageFlags:
@@ -5587,6 +5587,18 @@ Body:
     HitCount: 1
     CastCancel: true
     Duration1: 300000
+    Requires:
+      SpCost:
+        - Level: 1
+          Amount: 28
+        - Level: 2
+          Amount: 32
+        - Level: 3
+          Amount: 36
+        - Level: 4
+          Amount: 40
+        - Level: 5
+          Amount: 44    
     FixedCastTime: 5000
     Requires:
       SpCost: 30
@@ -8014,7 +8026,7 @@ Body:
     Description: Endow Blaze
     MaxLevel: 5
     Type: Magic
-    TargetType: Support
+    TargetType: Self
     DamageFlags:
       NoDamage: true
     Flags:
@@ -8049,7 +8061,7 @@ Body:
     Description: Endow Tsunami
     MaxLevel: 5
     Type: Magic
-    TargetType: Support
+    TargetType: Self
     DamageFlags:
       NoDamage: true
     Flags:
@@ -8084,7 +8096,7 @@ Body:
     Description: Endow Tornado
     MaxLevel: 5
     Type: Magic
-    TargetType: Support
+    TargetType: Self
     DamageFlags:
       NoDamage: true
     Flags:
@@ -8119,7 +8131,7 @@ Body:
     Description: Endow Quake
     MaxLevel: 5
     Type: Magic
-    TargetType: Support
+    TargetType: Self
     DamageFlags:
       NoDamage: true
     Flags:
