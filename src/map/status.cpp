@@ -3794,6 +3794,8 @@ int status_calc_pc_sub(struct map_session_data* sd, uint8 opt)
 		base_status->dex += skill;
 	if((skill = pc_checkskill(sd,AC_CONCENTRATION)) > 0)
 		base_status->luk += skill;
+	if((skill = pc_checkskill(sd,MC_VENDING)) > 0)
+		base_status->luk += skill;
 	if((skill = pc_checkskill(sd,SA_FREECAST)) > 0)
 		base_status->dex += skill;
 	if((sd->status.weapon == W_FIST || sd->status.weapon == W_KNUCKLE) && (skill = pc_checkskill(sd,MO_IRONHAND)) > 0)
@@ -3802,6 +3804,14 @@ int status_calc_pc_sub(struct map_session_data* sd, uint8 opt)
 		base_status->batk += skill*2; 		
 	if((skill = pc_checkskill(sd, PR_MACEMASTERY)) > 0 )
 		base_status->batk += skill*3; 	
+	if((sd->status.weapon == W_1HAXE || sd->status.weapon == W_2HAXE) && (skill = pc_checkskill(sd,AM_AXEMASTERY)) > 0)
+		base_status->batk += skill*4;
+	if((sd->status.weapon == W_1HSWORD ) && (skill = pc_checkskill(sd,AM_CP_WEAPON)) > 0)
+		base_status->batk += 40;
+	if((sd->status.weapon == W_DAGGER ) && (skill = pc_checkskill(sd,SM_SWORD)) > 0)
+		base_status->batk += 40;
+	if((sd->status.weapon == W_KATAR ) && (skill = pc_checkskill(sd,AS_KATAR)) > 0)
+		base_status->batk += 40;
 	if((sd->status.weapon == W_1HSWORD || sd->status.weapon == W_2HSWORD) && (skill = pc_checkskill(sd,SM_TWOHAND)) > 0)
 		base_status->batk += skill*4; 	
 	if((sd->status.weapon == W_1HSPEAR || sd->status.weapon == W_2HSPEAR) && (skill = pc_checkskill(sd,KN_SPEARMASTERY)) > 0)
@@ -6387,12 +6397,10 @@ static unsigned short status_calc_batk(struct block_list *bl, struct status_chan
 		batk += sc->data[SC_QUEST_BUFF3]->val1;
 	if (sc->data[SC_SHRIMP])
 		batk += batk * sc->data[SC_SHRIMP]->val2 / 100;
-#ifdef RENEWAL
 	if (sc->data[SC_LOUD])
 		batk += 30;
 	if (sc->data[SC_NIBELUNGEN] && sc->data[SC_NIBELUNGEN]->val2 == RINGNBL_ATKRATE)
 		batk += batk * 20 / 100;
-#endif
 	if (sc->data[SC_SUNSTANCE])
 		batk += batk * sc->data[SC_SUNSTANCE]->val2 / 100;
 
@@ -10519,11 +10527,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 				struct map_session_data * s_sd = BL_CAST(BL_PC, src);
 				if (type == SC_OVERTHRUST) {
 					// val2 holds if it was casted on self, or is bonus received from others
-#ifdef RENEWAL
 						val3 = (val2) ? 5 * val1 : (val1 > 4) ? 15 : (val1 > 2) ? 10 : 5; // Power increase
-#else
-						val3 = (val2) ? 5 * val1 : 5; // Power increase
-#endif
 				}
 				else if (type == SC_ADRENALINE2 || type == SC_ADRENALINE) {
 					val3 = (val2) ? 300 : 200; // Aspd increase

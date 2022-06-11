@@ -229,16 +229,6 @@ Body:
     Tree:
       - Name: MC_INCCARRY
         MaxLevel: 5
-      - Name: MC_DISCOUNT
-        MaxLevel: 5
-        Requires:
-          - Name: MC_INCCARRY
-            Level: 3
-      - Name: MC_OVERCHARGE
-        MaxLevel: 5
-        Requires:
-          - Name: MC_DISCOUNT
-            Level: 3
       - Name: MC_PUSHCART
         MaxLevel: 10
         Requires:
@@ -251,10 +241,11 @@ Body:
         Requires:
           - Name: MC_PUSHCART
             Level: 3
-      - Name: MC_MAMMONITE
-        MaxLevel: 10
       - Name: MC_CARTREVOLUTION
-        MaxLevel: 1
+        MaxLevel: 10
+        Requires:
+          - Name: MC_PUSHCART
+            Level: 10        
       - Name: MC_CHANGECART
         MaxLevel: 1
       - Name: MC_LOUD
@@ -272,21 +263,18 @@ Body:
     Tree:
       - Name: TF_DOUBLE
         MaxLevel: 10
-      - Name: TF_MISS
-        MaxLevel: 10
       - Name: TF_STEAL
         MaxLevel: 10
-      - Name: TF_HIDING
+      - Name: TF_MISS
         MaxLevel: 10
-        Requires:
-          - Name: TF_STEAL
-            Level: 5
-      - Name: TF_POISON
+      - Name: SM_SWORD
+        MaxLevel: 10
+      - Name: AS_ENCHANTPOISON
         MaxLevel: 10
       - Name: TF_DETOXIFY
         MaxLevel: 1
         Requires:
-          - Name: TF_POISON
+          - Name: AS_ENCHANTPOISON
             Level: 3
       - Name: TF_SPRINKLESAND
         MaxLevel: 1
@@ -531,65 +519,15 @@ Body:
           - Name: BS_IRON
             Level: 1
       - Name: BS_ENCHANTEDSTONE
-        MaxLevel: 5
+        MaxLevel: 1
         Requires:
           - Name: BS_IRON
             Level: 1
-      - Name: BS_ORIDEOCON
-        MaxLevel: 5
-        Requires:
-          - Name: BS_ENCHANTEDSTONE
-            Level: 1
-      - Name: BS_DAGGER
-        MaxLevel: 3
-      - Name: BS_SWORD
-        MaxLevel: 3
-        Requires:
-          - Name: BS_DAGGER
-            Level: 1
-      - Name: BS_TWOHANDSWORD
-        MaxLevel: 3
-        Requires:
-          - Name: BS_SWORD
-            Level: 1
-      - Name: BS_AXE
-        MaxLevel: 3
-        Requires:
-          - Name: BS_SWORD
-            Level: 2
-      - Name: BS_MACE
-        MaxLevel: 3
-        Requires:
-          - Name: BS_KNUCKLE
-            Level: 1
-      - Name: BS_KNUCKLE
-        MaxLevel: 3
-        Requires:
-          - Name: BS_DAGGER
-            Level: 1
-      - Name: BS_SPEAR
-        MaxLevel: 3
-        Requires:
-          - Name: BS_DAGGER
-            Level: 2
       - Name: BS_HILTBINDING
-        MaxLevel: 1
-      - Name: BS_FINDINGORE
-        MaxLevel: 1
-        Requires:
-          - Name: BS_STEEL
-            Level: 1
-          - Name: BS_HILTBINDING
-            Level: 1
-      - Name: BS_WEAPONRESEARCH
-        MaxLevel: 10
-        Requires:
-          - Name: BS_HILTBINDING
-            Level: 1
       - Name: BS_REPAIRWEAPON
         MaxLevel: 1
         Requires:
-          - Name: BS_WEAPONRESEARCH
+          - Name: BS_HILTBINDING
             Level: 1
       - Name: BS_SKINTEMPER
         MaxLevel: 5
@@ -603,8 +541,6 @@ Body:
       - Name: BS_WEAPONPERFECT
         MaxLevel: 5
         Requires:
-          - Name: BS_WEAPONRESEARCH
-            Level: 2
           - Name: BS_ADRENALINE
             Level: 2
       - Name: BS_OVERTHRUST
@@ -623,11 +559,6 @@ Body:
         MaxLevel: 1
       - Name: BS_GREED
         MaxLevel: 1
-      - Name: BS_ADRENALINE2
-        MaxLevel: 1
-        Requires:
-          - Name: BS_ADRENALINE
-            Level: 5
   - Job: Hunter
     Inherit:
       Novice: true
@@ -706,33 +637,11 @@ Body:
             Level: 2
       - Name: AS_KATAR
         MaxLevel: 10
-      - Name: AS_CLOAKING
-        MaxLevel: 10
-        Requires:
-          - Name: TF_HIDING
-            Level: 2
       - Name: AS_SONICBLOW
         MaxLevel: 10
         Requires:
           - Name: AS_KATAR
             Level: 4
-      - Name: AS_GRIMTOOTH
-        MaxLevel: 5
-        Requires:
-          - Name: AS_CLOAKING
-            Level: 2
-          - Name: AS_SONICBLOW
-            Level: 5
-      - Name: AS_ENCHANTPOISON
-        MaxLevel: 10
-        Requires:
-          - Name: TF_POISON
-            Level: 1
-      - Name: AS_POISONREACT
-        MaxLevel: 10
-        Requires:
-          - Name: AS_ENCHANTPOISON
-            Level: 3
       - Name: AS_VENOMDUST
         MaxLevel: 10
         Requires:
@@ -741,8 +650,6 @@ Body:
       - Name: AS_SPLASHER
         MaxLevel: 10
         Requires:
-          - Name: AS_POISONREACT
-            Level: 5
           - Name: AS_VENOMDUST
             Level: 5
       - Name: AS_SONICACCEL
@@ -1145,8 +1052,6 @@ Body:
       Novice: true
       Merchant: true
     Tree:
-      - Name: AM_AXEMASTERY
-        MaxLevel: 10
       - Name: AM_LEARNINGPOTION
         MaxLevel: 10
       - Name: AM_PHARMACY
@@ -1154,11 +1059,6 @@ Body:
         Requires:
           - Name: AM_LEARNINGPOTION
             Level: 5
-      - Name: AM_DEMONSTRATION
-        MaxLevel: 5
-        Requires:
-          - Name: AM_PHARMACY
-            Level: 4
       - Name: AM_ACIDTERROR
         MaxLevel: 5
         Requires:
@@ -1180,25 +1080,7 @@ Body:
           - Name: AM_PHARMACY
             Level: 2
       - Name: AM_CP_WEAPON
-        MaxLevel: 5
-        Requires:
-          - Name: AM_CP_ARMOR
-            Level: 3
-      - Name: AM_CP_SHIELD
-        MaxLevel: 5
-        Requires:
-          - Name: AM_CP_HELM
-            Level: 3
-      - Name: AM_CP_ARMOR
-        MaxLevel: 5
-        Requires:
-          - Name: AM_CP_SHIELD
-            Level: 3
-      - Name: AM_CP_HELM
-        MaxLevel: 5
-        Requires:
-          - Name: AM_PHARMACY
-            Level: 2
+        MaxLevel: 1
       - Name: AM_BIOETHICS
         MaxLevel: 1
       - Name: AM_CALLHOMUN
@@ -1212,12 +1094,10 @@ Body:
           - Name: AM_BIOETHICS
             Level: 1
       - Name: AM_RESURRECTHOMUN
-        MaxLevel: 5
+        MaxLevel: 1
         Requires:
           - Name: AM_CALLHOMUN
             Level: 1
-      - Name: AM_BERSERKPITCHER
-        MaxLevel: 1
       - Name: AM_TWILIGHT1
         MaxLevel: 1
         Requires:
@@ -2042,17 +1922,6 @@ Body:
       Merchant: true
       Blacksmith: true
     Tree:
-      - Name: WS_MELTDOWN
-        MaxLevel: 10
-        Requires:
-          - Name: BS_SKINTEMPER
-            Level: 3
-          - Name: BS_HILTBINDING
-            Level: 1
-          - Name: BS_WEAPONRESEARCH
-            Level: 5
-          - Name: BS_OVERTHRUST
-            Level: 3
      # - Name: WS_CREATECOIN
        # MaxLevel: 3
        # Requires:
@@ -2094,8 +1963,8 @@ Body:
       - Name: WS_WEAPONREFINE
         MaxLevel: 10
         Requires:
-          - Name: BS_WEAPONRESEARCH
-            Level: 10
+          - Name: BS_WEAPONPERFECT
+            Level: 5
       - Name: WS_CARTTERMINATION
         MaxLevel: 10
         Requires:
@@ -2177,10 +2046,8 @@ Body:
             Level: 5
           - Name: AS_CLOAKING
             Level: 3
-          - Name: AS_ENCHANTPOISON
+          - Name: AS_VENOMDUST
             Level: 6
-          - Name: TF_POISON
-            Level: 5
       - Name: ASC_METEORASSAULT
         MaxLevel: 10
         Requires:
@@ -2195,12 +2062,10 @@ Body:
       - Name: ASC_CDP
         MaxLevel: 1
         Requires:
-          - Name: TF_POISON
-            Level: 10
           - Name: TF_DETOXIFY
             Level: 1
           - Name: AS_ENCHANTPOISON
-            Level: 5
+            Level: 10
   - Job: Lord_Knight2
     Inherit:
       Novice: true
@@ -2342,7 +2207,7 @@ Body:
         MaxLevel: 5
         Requires:
           - Name: TF_HIDING
-            Level: 5
+            Level: 1
           - Name: RG_TUNNELDRIVE
             Level: 3
       - Name: ST_REJECTSWORD
@@ -2384,22 +2249,6 @@ Body:
            # Level: 6
          # - Name: ST_REJECTSWORD
            # Level: 2
-      - Name: CR_SLIMPITCHER
-        MaxLevel: 10
-        Requires:
-          - Name: AM_POTIONPITCHER
-            Level: 5
-      - Name: CR_FULLPROTECTION
-        MaxLevel: 5
-        Requires:
-          - Name: AM_CP_WEAPON
-            Level: 5
-          - Name: AM_CP_SHIELD
-            Level: 5
-          - Name: AM_CP_ARMOR
-            Level: 5
-          - Name: AM_CP_HELM
-            Level: 5
       - Name: CR_ACIDDEMONSTRATION
         MaxLevel: 10
         Requires:
@@ -2788,7 +2637,7 @@ Body:
             Level: 5
       - Name: MC_IDENTIFY
         MaxLevel: 1
-      - Name: MC_VENDING
+      - Name: BS_FINDINGORE
         MaxLevel: 10
         Requires:
           - Name: MC_PUSHCART

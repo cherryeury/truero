@@ -884,6 +884,7 @@ int battle_calc_cardfix(int attack_type, struct block_list *src, struct block_li
 							sd->right_weapon.addclass[CLASS_ALL] + sd->left_weapon.addclass[CLASS_ALL]) / 100;
 					}
 					if( sd->status.weapon == W_KATAR && (skill = pc_checkskill(sd,ASC_KATAR)) > 0 ) cardfix = cardfix * (100 + (10 + 2 * skill)) / 100;
+					if( sd->status.weapon == W_DAGGER && (skill = pc_checkskill(sd,RG_STRIPWEAPON)) > 0 ) cardfix = cardfix * (100 + (10 + 2 * skill)) / 100;
 				}
 				//! CHECKME: These right & left hand weapon ignores 'left_cardfix_to_right'?
 				for (const auto &it : sd->right_weapon.add_dmg) {
@@ -1301,9 +1302,6 @@ bool battle_status_block_damage(struct block_list *src, struct block_list *targe
 	}
 
 	if (sc->data[SC_NEUTRALBARRIER] && ((flag&(BF_LONG|BF_MAGIC)) == BF_LONG
-#ifndef RENEWAL
-		|| skill_id == CR_ACIDDEMONSTRATION
-#endif
 		)) {
 		d->dmg_lv = ATK_MISS;
 		return false;
@@ -2083,12 +2081,15 @@ int64 battle_addmastery(struct map_session_data *sd,struct block_list *target,in
 	switch(weapon) {
 		case W_DAGGER:
 			if((skill = pc_checkskill(sd,SM_SWORD)) > 0)
-				damage += (skill * 0);
+				damage += (skill * 5);
 			if((skill = pc_checkskill(sd,GN_TRAINING_SWORD)) > 0)
 				damage += skill * 0;
 			break;
 		case W_2HSWORD:
 		case W_1HSWORD:
+			if((pc_checkskill(sd,AM_CP_WEAPON)) > 0)
+				if((skill = pc_checkskill(sd,AM_AXEMASTERY)) > 0)
+					damage += (skill * 5);
 			if((skill = pc_checkskill(sd,SM_TWOHAND)) > 0)
 				damage += (skill * 5);
 			break;
@@ -2107,7 +2108,7 @@ int64 battle_addmastery(struct map_session_data *sd,struct block_list *target,in
 		case W_1HAXE:
 		case W_2HAXE:
 			if((skill = pc_checkskill(sd,AM_AXEMASTERY)) > 0)
-				damage += (skill * 0);
+				damage += (skill * 5);
 			if((skill = pc_checkskill(sd,NC_TRAININGAXE)) > 0)
 				damage += (skill * 0);
 			break;
@@ -2129,7 +2130,7 @@ int64 battle_addmastery(struct map_session_data *sd,struct block_list *target,in
 		case W_BOW:
 			if((skill = pc_checkskill(sd,AC_CHARGEARROW)) > 0)
 				damage += (skill * 5);
-			break;			
+			break;	
 		case W_MUSICAL:
 			if((skill = pc_checkskill(sd,BA_MUSICALLESSON)) > 0)
 				damage += (skill * 0);
@@ -2144,7 +2145,7 @@ int64 battle_addmastery(struct map_session_data *sd,struct block_list *target,in
 			break;
 		case W_KATAR:
 			if((skill = pc_checkskill(sd,AS_KATAR)) > 0)
-				damage += (skill * 0);
+				damage += (skill * 5);
 			break;
 	}
 
@@ -2984,17 +2985,11 @@ static bool is_attack_hitting(struct Damage* wd, struct block_list *src, struct 
 				break;
 			case AS_SONICBLOW:
 				if(sd && pc_checkskill(sd,AS_SONICACCEL) > 0)
-#ifdef RENEWAL
 					hitrate += hitrate * 90 / 100;
-#else
-					hitrate += hitrate * 50 / 100;
-#endif
 				break;
-#ifdef RENEWAL
 			case RG_BACKSTAP:
 				hitrate += skill_lv; // !TODO: What's the rate increase?
 				break;
-#endif
 			case RK_SONICWAVE:
 				hitrate += hitrate * 3 * skill_lv / 100; // !TODO: Confirm the hitrate bonus
 				break;
@@ -3703,7 +3698,7 @@ static void battle_calc_skill_base_damage(struct Damage* wd, struct block_list *
 				}
 #ifndef RENEWAL
 				if(sd->bonus.crit_atk_rate && is_attack_critical(wd, src, target, skill_id, skill_lv, false)) { // add +crit damage bonuses here in pre-renewal mode [helvetica]
-					ATK_ADDRATE(wd->damage, wd->damage2, sd->bonus.crit_atk_rate);
+					ATK_ADDRATE(wd->damage, wd->damage2, sd->bonus.crit_atk_rate +50);
 				}
 				if(sd->status.party_id && (skill=pc_checkskill(sd,TK_POWER)) > 0) {
 					if( (i = party_foreachsamemap(party_sub_count, sd, 0)) > 1 ) { // exclude the player himself [Inkfish]
@@ -3991,19 +3986,15 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			skillratio += 30 * skill_lv;
 			break;
 		case AS_SONICBLOW:
-#ifdef RENEWAL
 			skillratio += 100 + 100 * skill_lv;
 			if (tstatus->hp < tstatus->max_hp >> 1)
 				skillratio += skillratio / 2;
-#else
-			skillratio += 300 + 40 * skill_lv;
-#endif
 			break;
 		case TF_SPRINKLESAND:
 			skillratio += 30;
 			break;
 		case MC_CARTREVOLUTION:
-			skillratio += 50;
+			skillratio += -50 + 20 * skill_lv;
 			if(sd && sd->cart_weight)
 				skillratio += 100 * sd->cart_weight / sd->cart_weight_max; // +1% every 1% weight
 			else if (!sd)
@@ -4045,11 +4036,7 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 				skillratio += 200 + 40 * skill_lv;
 			break;
 		case RG_RAID:
-#ifdef RENEWAL
 			skillratio += -100 + 50 + skill_lv * 150;
-#else
-			skillratio += 40 * skill_lv;
-#endif
 			break;
 		case RG_INTIMIDATE:
 			skillratio += 30 * skill_lv;
@@ -4071,13 +4058,9 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			skillratio += 20 * skill_lv;
 			break;
 		case AM_ACIDTERROR:
-#ifdef RENEWAL
 			skillratio += -100 + 200 * skill_lv;
 			if (sd && pc_checkskill(sd, AM_LEARNINGPOTION))
 				skillratio += 100; // !TODO: What's this bonus increase?
-#else
-			skillratio += 40 * skill_lv;
-#endif
 			break;
 		case MO_FINGEROFFENSIVE:
 #ifdef RENEWAL
@@ -4165,7 +4148,8 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			skillratio += 100 + 120 * skill_lv;
 			RE_LVL_DMOD(100);
 #else
-			skillratio += -60 + 40 * skill_lv;
+			skillratio += 100 + 50 * skill_lv;
+		    RE_LVL_DMOD(100);
 #endif
 			break;
 		case SN_SHARPSHOOTING:
@@ -4181,13 +4165,11 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			skillratio += -100 + 300 + 300 * skill_lv;
 			RE_LVL_DMOD(100);
 			break;
-#ifdef RENEWAL
 		case CR_ACIDDEMONSTRATION:
 			skillratio += -100 + 200 * skill_lv + sstatus->int_ + tstatus->vit; // !TODO: Confirm status bonus
 			if (target->type == BL_PC)
 				skillratio /= 2;
 			break;
-#endif
 		case CG_ARROWVULCAN:
 #ifdef RENEWAL
 			skillratio += 400 + 100 * skill_lv;
@@ -4197,13 +4179,7 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 #endif
 			break;
 		case AS_SPLASHER:
-#ifdef RENEWAL
-			skillratio += -100 + 400 + 100 * skill_lv;
-#else
-			skillratio += 400 + 50 * skill_lv;
-#endif
-			if(sd)
-				skillratio += 20 * pc_checkskill(sd,AS_POISONREACT);
+			skillratio += -100 + 100 * skill_lv;
 			break;
 		case ASC_BREAKER:
 #ifdef RENEWAL
@@ -4211,7 +4187,8 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			RE_LVL_DMOD(100);
 #else
 			// Pre-Renewal: skill ratio for weapon part of damage [helvetica]
-			skillratio += -100 + 100 * skill_lv;
+			skillratio += -100 + 100 * skill_lv + sstatus->str + sstatus->int_;;
+			RE_LVL_DMOD(100);
 #endif
 			break;
 		case PA_SACRIFICE:
@@ -5824,7 +5801,7 @@ static void battle_calc_attack_left_right_hands(struct Damage* wd, struct block_
 			if (wd->damage2) {
 				if( (sd->class_&MAPID_BASEMASK) == MAPID_THIEF) {
 					skill = pc_checkskill(sd,AS_LEFT);
-					ATK_RATEL(wd->damage2, 30 + (skill * 10))
+					ATK_RATEL(wd->damage2, 50 + (skill * 10))
 				}
 				else if(sd->class_ == MAPID_KAGEROUOBORO) {
 					skill = pc_checkskill(sd,KO_LEFT);
@@ -6061,7 +6038,6 @@ static struct Damage initialize_weapon_data(struct block_list *src, struct block
 		wd.flag |= battle_range_type(src, target, skill_id, skill_lv);
 		switch(skill_id)
 		{
-#ifdef RENEWAL
 			case RG_BACKSTAP:
 				if (sd && sd->status.weapon == W_DAGGER)
 					wd.div_ = 2;
@@ -6070,7 +6046,6 @@ static struct Damage initialize_weapon_data(struct block_list *src, struct block
 				if (sd && sd->status.weapon == W_KNUCKLE)
 					wd.div_ = -6;
 				break;
-#endif
 			case MH_SONIC_CRAW:{
 				TBL_HOM *hd = BL_CAST(BL_HOM,src);
 				wd.div_ = hd->homunculus.spiritball;

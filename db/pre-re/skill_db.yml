@@ -1747,7 +1747,7 @@ Body:
   - Id: 38
     Name: MC_OVERCHARGE
     Description: Overcharge
-    MaxLevel: 10
+    MaxLevel: 5
   - Id: 39
     Name: MC_PUSHCART
     Description: Pushcart
@@ -1769,19 +1769,8 @@ Body:
       SpCost: 10
   - Id: 41
     Name: MC_VENDING
-    Description: Vending
+    Description: Lucky Merchant
     MaxLevel: 10
-    TargetType: Self
-    DamageFlags:
-      NoDamage: true
-    Flags:
-      AllowOnMado: true
-    Range: 1
-    Hit: Single
-    HitCount: 1
-    Requires:
-      SpCost: 30
-      State: Cart
   - Id: 42
     Name: MC_MAMMONITE
     Description: Mammonite
@@ -1969,7 +1958,7 @@ Body:
   - Id: 51
     Name: TF_HIDING
     Description: Hiding
-    MaxLevel: 10
+    MaxLevel: 1
     TargetType: Self
     DamageFlags:
       NoDamage: true
@@ -1985,24 +1974,6 @@ Body:
     Duration1:
       - Level: 1
         Time: 30000
-      - Level: 2
-        Time: 60000
-      - Level: 3
-        Time: 90000
-      - Level: 4
-        Time: 120000
-      - Level: 5
-        Time: 150000
-      - Level: 6
-        Time: 180000
-      - Level: 7
-        Time: 210000
-      - Level: 8
-        Time: 240000
-      - Level: 9
-        Time: 270000
-      - Level: 10
-        Time: 300000
     Requires:
       SpCost: 10
     Status: Hiding
@@ -4714,9 +4685,8 @@ Body:
     Hit: Multi_Hit
     HitCount: -8
     Element: Weapon
-    AfterCastActDelay: 2000
-    AfterCastWalkDelay: 2000
-    Duration2: 5000
+    Duration2: 4500
+    Cooldown: 1000
     CastDelayFlags:
       IgnoreStatus: true
     Requires:
@@ -4959,26 +4929,47 @@ Body:
     CastTime: 1000
     Duration1:
       - Level: 1
-        Time: 5000
+        Time: 11000
       - Level: 2
-        Time: 5500
+        Time: 10000
       - Level: 3
-        Time: 6000
+        Time: 9000
       - Level: 4
-        Time: 6500
+        Time: 8000
       - Level: 5
         Time: 7000
       - Level: 6
-        Time: 7500
+        Time: 6000
       - Level: 7
-        Time: 8000
+        Time: 5000
       - Level: 8
-        Time: 8500
+        Time: 4000
       - Level: 9
-        Time: 9000
+        Time: 3000
       - Level: 10
+        Time: 2000
+    Duration2: 20000
+    Cooldown:
+      - Level: 1
+        Time: 7500
+      - Level: 2
+        Time: 8000
+      - Level: 3
+        Time: 8500
+      - Level: 4
+        Time: 9000
+      - Level: 5
         Time: 9500
-    Duration2: 60000
+      - Level: 6
+        Time: 10000
+      - Level: 7
+        Time: 10500
+      - Level: 8
+        Time: 11000
+      - Level: 9
+        Time: 11500
+      - Level: 10
+        Time: 2000
     Requires:
       SpCost:
         - Level: 1
@@ -5001,9 +4992,6 @@ Body:
           Amount: 28
         - Level: 10
           Amount: 30
-      ItemCost:
-        - Item: Red_Gemstone
-          Amount: 1
     Status: Splasher
   - Id: 142
     Name: NV_FIRSTAID
@@ -5155,13 +5143,12 @@ Body:
   - Id: 153
     Name: MC_CARTREVOLUTION
     Description: Cart Revolution
-    MaxLevel: 1
+    MaxLevel: 10
     Type: Weapon
     TargetType: Attack
     DamageFlags:
       Splash: true
     Flags:
-      IsQuest: true
       TargetTrap: true
       AllowOnMado: true
     Range: 1
@@ -5171,7 +5158,7 @@ Body:
     SplashArea: 1
     Knockback: 2
     Requires:
-      SpCost: 12
+      SpCost: 30
       State: Cart
   - Id: 154
     Name: MC_CHANGECART
@@ -6521,32 +6508,6 @@ Body:
     Name: AM_CP_WEAPON
     Description: Alchemical Weapon
     MaxLevel: 5
-    Type: Weapon
-    TargetType: Support
-    DamageFlags:
-      NoDamage: true
-    Range: 1
-    Hit: Single
-    HitCount: 1
-    CastCancel: true
-    CastTime: 2000
-    Duration1:
-      - Level: 1
-        Time: 120000
-      - Level: 2
-        Time: 240000
-      - Level: 3
-        Time: 360000
-      - Level: 4
-        Time: 480000
-      - Level: 5
-        Time: 600000
-    Requires:
-      SpCost: 30
-      ItemCost:
-        - Item: Coating_Bottle
-          Amount: 1
-    Status: Cp_Weapon
   - Id: 235
     Name: AM_CP_SHIELD
     Description: Synthesized Shield
@@ -6668,7 +6629,7 @@ Body:
   - Id: 247
     Name: AM_RESURRECTHOMUN
     Description: Homunculus Resurrection
-    MaxLevel: 5
+    MaxLevel: 1
     TargetType: Self
     DamageFlags:
       NoDamage: true
@@ -6679,14 +6640,6 @@ Body:
       SpCost:
         - Level: 1
           Amount: 74
-        - Level: 2
-          Amount: 68
-        - Level: 3
-          Amount: 62
-        - Level: 4
-          Amount: 56
-        - Level: 5
-          Amount: 50
   - Id: 248
     Name: CR_TRUST
     Description: Faith

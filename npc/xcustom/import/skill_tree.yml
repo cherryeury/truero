@@ -96,13 +96,6 @@ Body:
         Requires:
           - Name: CR_TRUST
             Level: 7
-      - Name: CR_GRANDCROSS
-        MaxLevel: 10
-        Requires:
-          - Name: CR_HOLYCROSS
-            Level: 6
-          - Name: CR_TRUST
-            Level: 10
       - Name: CR_DEFENDER
         MaxLevel: 5
         Requires:
@@ -390,4 +383,158 @@ Body:
           - Name: MG_SRECOVERY
             Level: 5
           - Name: PR_LEXDIVINA
+            Level: 5
+  - Job: Alchemist
+    Inherit:
+      Novice: true
+      Merchant: true
+    Tree:
+      - Name: BS_IRON
+        MaxLevel: 1
+      - Name: BS_STEEL
+        MaxLevel: 1
+        Requires:
+          - Name: BS_IRON
+            Level: 1
+      - Name: BS_ENCHANTEDSTONE
+        MaxLevel: 1
+        Requires:
+          - Name: BS_IRON
+            Level: 1
+      - Name: BS_HILTBINDING
+        MaxLevel: 1
+      - Name: BS_REPAIRWEAPON
+        MaxLevel: 1
+        Requires:
+          - Name: BS_HILTBINDING
+            Level: 1
+      - Name: BS_SKINTEMPER
+        MaxLevel: 5
+      - Name: BS_HAMMERFALL
+        MaxLevel: 5
+      - Name: BS_ADRENALINE
+        MaxLevel: 5
+        Requires:
+          - Name: BS_HAMMERFALL
+            Level: 2
+      - Name: BS_WEAPONPERFECT
+        MaxLevel: 5
+        Requires:
+          - Name: BS_ADRENALINE
+            Level: 2
+      - Name: BS_OVERTHRUST
+        MaxLevel: 5
+        Requires:
+          - Name: BS_ADRENALINE
+            Level: 3
+      - Name: BS_MAXIMIZE
+        MaxLevel: 5
+        Requires:
+          - Name: BS_WEAPONPERFECT
+            Level: 3
+          - Name: BS_OVERTHRUST
+            Level: 2
+      - Name: BS_UNFAIRLYTRICK
+        MaxLevel: 1
+      - Name: BS_GREED
+        MaxLevel: 1
+  - Job: Creator
+    Inherit:
+      Novice: true
+      Merchant: true
+      Alchemist: true
+    Tree:
+     # - Name: WS_CREATECOIN
+       # MaxLevel: 3
+       # Requires:
+         # - Name: BS_SKINTEMPER
+           # Level: 5
+         # - Name: BS_IRON
+           # Level: 5
+         # - Name: BS_ENCHANTEDSTONE
+           # Level: 3
+         # - Name: BS_ORIDEOCON
+           # Level: 2
+     # - Name: WS_CREATENUGGET
+       # MaxLevel: 3
+       # Requires:
+         # - Name: BS_ORIDEOCON
+           # Level: 3
+         # - Name: BS_FINDINGORE
+           # Level: 1
+         # - Name: BS_WEAPONRESEARCH
+           # Level: 5
+      - Name: WS_CARTBOOST
+        MaxLevel: 1
+        Requires:
+          - Name: MC_PUSHCART
+            Level: 5
+          - Name: MC_CARTREVOLUTION
+            Level: 1
+          - Name: MC_CHANGECART
+            Level: 1
+          - Name: BS_HILTBINDING
+            Level: 1
+     # - Name: WS_SYSTEMCREATE
+       # MaxLevel: 1
+       # Requires:
+         # - Name: BS_WEAPONRESEARCH
+           # Level: 10
+         # - Name: BS_WEAPONPERFECT
+           # Level: 3
+      - Name: WS_WEAPONREFINE
+        MaxLevel: 10
+        Requires:
+          - Name: BS_WEAPONPERFECT
+            Level: 5
+      - Name: WS_CARTTERMINATION
+        MaxLevel: 10
+        Requires:
+          - Name: MC_CARTREVOLUTION
+            Level: 10
+          - Name: BS_HAMMERFALL
+            Level: 5
+          - Name: WS_CARTBOOST
+            Level: 1
+      - Name: WS_OVERTHRUSTMAX
+        MaxLevel: 5
+        Requires:
+          - Name: BS_OVERTHRUST
+            Level: 5
+  - Job: Assassin
+    Inherit:
+      Novice: true
+      Thief: true
+    Tree:
+      - Name: TF_HIDING
+        MaxLevel: 1    
+      - Name: RG_TUNNELDRIVE
+        MaxLevel: 5
+        Requires:
+          - Name: TF_HIDING
+            Level: 1
+  - Job: Assassin_Cross
+    Inherit:
+      Novice: true
+      Thief: true
+      Assassin: true
+    Tree:
+      - Name: ST_CHASEWALK
+        MaxLevel: 5
+        Requires:
+          - Name: TF_HIDING
+            Level: 1
+          - Name: RG_TUNNELDRIVE
+            Level: 3
+      - Name: RG_COMPULSION
+        MaxLevel: 5
+        Requires:
+          - Name: RG_STEALCOIN
+            Level: 1
+      - Name: RG_STRIPWEAPON
+        MaxLevel: 5
+        Requires:
+          - Name: TF_DOUBLE
+            Level: 5
+          - Name: AS_LEFT
             Level: 5

@@ -1367,7 +1367,7 @@ int skill_additional_effect(struct block_list* src, struct block_list *bl, uint1
 					// Gank
 					if(dstmd && sd->status.weapon != W_BOW &&
 						(skill=pc_checkskill(sd,RG_SNATCHER)) > 0 &&
-						(skill*15 + 55) + pc_checkskill(sd,TF_STEAL)*10 > rnd()%1000) {
+						(skill*15 + 55) + pc_checkskill(sd,TF_STEAL)*10 + (20 * pc_checkskill(sd, RG_COMPULSION)) > rnd()%1000) {
 						if(pc_steal_item(sd,bl,pc_checkskill(sd,TF_STEAL)))
 							clif_skill_nodamage(src,bl,TF_STEAL,skill,1);
 						else
@@ -2180,15 +2180,6 @@ int skill_additional_effect(struct block_list* src, struct block_list *bl, uint1
 		if( sd && battle_config.equip_self_break_rate )
 		{	// Self weapon breaking
 			rate = battle_config.equip_natural_break_rate;
-#ifndef RENEWAL
-			if( sc )
-			{
-				if(sc->data[SC_OVERTHRUST])
-					rate += 10;
-				if(sc->data[SC_MAXOVERTHRUST])
-					rate += 10;
-			}
-#endif
 			if( rate )
 				skill_break_equip(src,src, EQP_WEAPON, rate, BCT_SELF);
 		}
@@ -2294,8 +2285,6 @@ int skill_additional_effect(struct block_list* src, struct block_list *bl, uint1
 
 			if (skill == PF_SPIDERWEB) //Special case, due to its nature of coding.
 				type = CAST_GROUND;
-			else if (skill == AS_SONICBLOW)
-				pc_stop_attack(sd); //Special case, Sonic Blow autospell should stop the player attacking.
 
 			sd->state.autocast = 1;
 			skill_consume_requirement(sd,skill,autospl_skill_lv,1);
@@ -9047,11 +9036,8 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 				}
 			}
 
-#ifdef RENEWAL
 			if (bl->type == BL_HOM)
 				hp *= 3; // Heal effectiveness is 3x for Homunculus
-#endif
-
 			clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
 			if( hp > 0 || (skill_id == AM_POTIONPITCHER && sp <= 0) )
 				clif_skill_nodamage(NULL,bl,AL_HEAL,hp,1);
@@ -9726,9 +9712,6 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 	case AS_SPLASHER:
 		if( status_has_mode(tstatus,MD_STATUSIMMUNE)
 		// Renewal dropped the 3/4 hp requirement
-#ifndef RENEWAL
-			|| tstatus-> hp > tstatus->max_hp*3/4
-#endif
 				) {
 			if (sd) clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 			map_freeblock_unlock();
@@ -9736,9 +9719,6 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 		}
 		clif_skill_nodamage(src,bl,skill_id,skill_lv,
 			sc_start4(src,bl,type,100,skill_lv,skill_id,src->id,skill_get_time(skill_id,skill_lv),1000));
-#ifndef RENEWAL
-		if (sd) skill_blockpc_start (sd, skill_id, skill_get_time(skill_id, skill_lv)+3000);
-#endif
 		break;
 
 	case PF_MINDBREAKER:
@@ -13570,7 +13550,7 @@ int skill_castend_pos2(struct block_list* src, int x, int y, uint16 skill_id, ui
 	case AM_RESURRECTHOMUN:	//[orn]
 		if (sd)
 		{
-			if (!hom_ressurect(sd, 20*skill_lv, x, y))
+			if (!hom_ressurect(sd, 100, x, y))
 			{
 				clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 				break;
@@ -21078,16 +21058,16 @@ bool skill_produce_mix(struct map_session_data *sd, uint16 skill_id, t_itemid na
 				make_per = sd->status.job_level*20 + status->dex*10 + status->luk*10; //Base chance
 				switch (nameid) {
 					case ITEMID_IRON:
-						make_per += 4000+i*500; // Temper Iron bonus: +26/+32/+38/+44/+50
+						make_per += 5000; // Temper Iron bonus: +26/+32/+38/+44/+50
 						break;
 					case ITEMID_STEEL:
-						make_per += 3000+i*500; // Temper Steel bonus: +35/+40/+45/+50/+55
+						make_per += 5000; // Temper Steel bonus: +35/+40/+45/+50/+55
 						break;
 					case ITEMID_STAR_CRUMB:
 						make_per = 100000; // Star Crumbs are 100% success crafting rate? (made 1000% so it succeeds even after penalties) [Skotlex]
 						break;
 					default: // Enchanted Stones
-						make_per += 1000+i*500; // Enchanted stone Craft bonus: +15/+20/+25/+30/+35
+						make_per += 5000; // Enchanted stone Craft bonus: +15/+20/+25/+30/+35
 						break;
 				}
 				break;

@@ -7,7 +7,7 @@ SKILL_INFO_LIST = {
 	},
 	[SKID.SM_SWORD] = {
 		"SM_SWORD",
-		SkillName = "Sword Mastery",
+		SkillName = "Dagger Mastery",
 		MaxLv = 10,
 		AttackRange = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
 	},
@@ -368,7 +368,7 @@ SKILL_INFO_LIST = {
 	},
 	[SKID.MC_VENDING] = {
 		"MC_VENDING",
-		SkillName = "Vending",
+		SkillName = "Lucky Merchant",
 		MaxLv = 10,
 		SpAmount = { 30, 30, 30, 30, 30, 30, 30, 30, 30, 30 },
 		bSeperateLv = false,
@@ -461,12 +461,12 @@ SKILL_INFO_LIST = {
 	[SKID.TF_HIDING] = {
 		"TF_HIDING",
 		SkillName = "Hiding",
-		MaxLv = 10,
-		SpAmount = { 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 },
+		MaxLv = 1,
+		SpAmount = { 10 },
 		bSeperateLv = false,
-		AttackRange = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+		AttackRange = { 1 },
 		_NeedSkillList = {
-			{ SKID.TF_STEAL,5 }
+			{ SKID.SM_SWORD,5 }
 		}
 	},
 	[SKID.TF_POISON] = {
@@ -485,7 +485,7 @@ SKILL_INFO_LIST = {
 		bSeperateLv = false,
 		AttackRange = { 9 },
 		_NeedSkillList = {
-			{ SKID.TF_POISON,3 }
+			{ SKID.AS_ENCHANTPOISON,3 }
 		}
 	},
 	[SKID.ALL_RESURRECTION] = {
@@ -904,14 +904,14 @@ SKILL_INFO_LIST = {
 	[SKID.BS_IRON] = {
 		"BS_IRON",
 		SkillName = "Iron Tempering",
-		MaxLv = 5,
-		AttackRange = { 1, 1, 1, 1, 1 }
+		MaxLv = 15,
+		AttackRange = { 1 }
 	},
 	[SKID.BS_STEEL] = {
 		"BS_STEEL",
 		SkillName = "Steel Tempering",
-		MaxLv = 5,
-		AttackRange = { 1, 1, 1, 1, 1 },
+		MaxLv = 1,
+		AttackRange = { 1},
 		_NeedSkillList = {
 			{ SKID.BS_IRON,1 },
 		}
@@ -919,8 +919,8 @@ SKILL_INFO_LIST = {
 	[SKID.BS_ENCHANTEDSTONE] = {
 		"BS_ENCHANTEDSTONE",
 		SkillName = "Enchanted Stone Craft",
-		MaxLv = 5,
-		AttackRange = { 1, 1, 1, 1, 1 },
+		MaxLv = 1,
+		AttackRange = { 1 },
 		_NeedSkillList = {
 			{ SKID.BS_IRON,1 }
 		}
@@ -1003,11 +1003,10 @@ SKILL_INFO_LIST = {
 	[SKID.BS_FINDINGORE] = {
 		"BS_FINDINGORE",
 		SkillName = "Finding Ore",
-		MaxLv = 1,
-		AttackRange = { 1 },
+		MaxLv = 10,
+		AttackRange = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 		_NeedSkillList = {
-			{ SKID.BS_HILTBINDING,1 },
-			{ SKID.BS_STEEL,1 }
+			{ SKID.MC_PUSHCART,3 }
 		}
 	},
 	[SKID.BS_WEAPONRESEARCH] = {
@@ -1027,7 +1026,7 @@ SKILL_INFO_LIST = {
 		bSeperateLv = false,
 		AttackRange = { 2 },
 		_NeedSkillList = {
-			{ SKID.BS_WEAPONRESEARCH,1 }
+			{ SKID.BS_HILTBINDING,1 }
 		}
 	},
 	[SKID.BS_SKINTEMPER] = {
@@ -1063,7 +1062,6 @@ SKILL_INFO_LIST = {
 		bSeperateLv = false,
 		AttackRange = { 1, 1, 1, 1, 1 },
 		_NeedSkillList = {
-			{ SKID.BS_WEAPONRESEARCH,2 },
 			{ SKID.BS_ADRENALINE,2 }
 		}
 	},
@@ -1325,10 +1323,7 @@ SKILL_INFO_LIST = {
 		MaxLv = 10,
 		SpAmount = { 20, 20, 20, 20, 20, 20, 20, 20, 20, 20 },
 		bSeperateLv = false,
-		AttackRange = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		_NeedSkillList = {
-			{ SKID.TF_POISON,1 }
-		}
+		AttackRange = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
 	},
 	[SKID.AS_POISONREACT] = {
 		"AS_POISONREACT",
@@ -1358,8 +1353,7 @@ SKILL_INFO_LIST = {
 		SpAmount = { 12, 14, 16, 18, 20, 22, 24, 26, 28, 30 },
 		AttackRange = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 		_NeedSkillList = {
-			{ SKID.AS_VENOMDUST,5 },
-			{ SKID.AS_POISONREACT,5 }
+			{ SKID.AS_VENOMDUST,5 }
 		}
 	},
 	[SKID.NV_FIRSTAID] = {
@@ -1461,11 +1455,14 @@ SKILL_INFO_LIST = {
 	[SKID.MC_CARTREVOLUTION] = {
 		"MC_CARTREVOLUTION",
 		SkillName = "Cart Revolution",
-		MaxLv = 1,
+		MaxLv = 10,
 		Type = "Quest",
-		SpAmount = { 12 },
+		SpAmount = { 30, 30, 30, 30, 30, 30, 30, 30, 30 },
 		bSeperateLv = false,
-		AttackRange = { 1 }
+		AttackRange = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+		_NeedSkillList = {
+			{ SKID.MC_PUSHCART,10 }
+		}
 	},
 	[SKID.MC_CHANGECART] = {
 		"MC_CHANGECART",
@@ -1556,13 +1553,14 @@ SKILL_INFO_LIST = {
 	},
 	[SKID.RG_STRIPWEAPON] = {
 		"RG_STRIPWEAPON",
-		SkillName = "Strip Weapon",
+		SkillName = "Advanced Dagger Mastery",
 		MaxLv = 5,
 		SpAmount = { 17, 19, 21, 23, 25 },
 		bSeperateLv = false,
 		AttackRange = { 1, 1, 1, 1, 1 },
 		_NeedSkillList = {
-			{ SKID.RG_STRIPARMOR,5 }
+			{ SKID.AS_LEFT,5 },
+			{ SKID.TF_DOUBLE,5 }
 		}
 	},
 	[SKID.RG_STRIPSHIELD] = {
@@ -1653,11 +1651,11 @@ SKILL_INFO_LIST = {
 	},
 	[SKID.RG_COMPULSION] = {
 		"RG_COMPULSION",
-		SkillName = "Compulsion Discount",
+		SkillName = "Compulsion",
 		MaxLv = 5,
 		AttackRange = { 1, 1, 1, 1, 1 },
 		_NeedSkillList = {
-			{ SKID.RG_GANGSTER,1 }
+			{ SKID.RG_STEALCOIN,1 }
 		}
 	},
 	[SKID.RG_PLAGIARISM] = {
@@ -1744,14 +1742,11 @@ SKILL_INFO_LIST = {
 	},
 	[SKID.AM_CP_WEAPON] = {
 		"AM_CP_WEAPON",
-		SkillName = "Chemical Protection Weapon",
-		MaxLv = 5,
-		SpAmount = { 30, 30, 30, 30, 30 },
+		SkillName = "Weapon Proficiency",
+		MaxLv = 1,
+		SpAmount = { 30 },
 		bSeperateLv = false,
-		AttackRange = { 1, 1, 1, 1, 1 },
-		_NeedSkillList = {
-			{ SKID.AM_CP_ARMOR,3 }
-		}
+		AttackRange = { 1 }
 	},
 	[SKID.AM_CP_SHIELD] = {
 		"AM_CP_SHIELD",
@@ -1857,9 +1852,9 @@ SKILL_INFO_LIST = {
 	[SKID.AM_RESURRECTHOMUN] = {
 		"AM_RESURRECTHOMUN",
 		SkillName = "Resurrect Homunculus",
-		MaxLv = 5,
-		SpAmount = { 74, 68, 62, 56, 50 },
-		AttackRange = { 1, 1, 1, 1, 1 },
+		MaxLv = 1,
+		SpAmount = { 74 },
+		AttackRange = { 1 },
 		_NeedSkillList = {
 			{ SKID.AM_CALLHOMUN,1 }
 		}
@@ -2946,9 +2941,8 @@ SKILL_INFO_LIST = {
 		AttackRange = { 9, 9, 9, 9, 9, 9, 9, 9, 9, 9 },
 		_NeedSkillList = {
 			{ SKID.TF_DOUBLE,5 },
-			{ SKID.TF_POISON,5 },
 			{ SKID.AS_CLOAKING,3 },
-			{ SKID.AS_ENCHANTPOISON,6 }
+			{ SKID.AS_VENOMDUST,6 }
 		}
 	},
 	[SKID.SN_SIGHT] = {
@@ -3058,7 +3052,7 @@ SKILL_INFO_LIST = {
 		bSeperateLv = false,
 		AttackRange = { 1, 1, 1, 1, 1 },
 		_NeedSkillList = {
-			{ SKID.TF_HIDING,5 },
+			{ SKID.TF_HIDING,1 },
 			{ SKID.RG_TUNNELDRIVE,3 }
 		}
 	},
@@ -3266,9 +3260,8 @@ SKILL_INFO_LIST = {
 		bSeperateLv = false,
 		AttackRange = { 1 },
 		_NeedSkillList = {
-			{ SKID.TF_POISON,10 },
 			{ SKID.TF_DETOXIFY,1 },
-			{ SKID.AS_ENCHANTPOISON,5 }
+			{ SKID.AS_ENCHANTPOISON,10 }
 		}
 	},
 	[SKID.WE_BABY] = {
@@ -3914,11 +3907,11 @@ SKILL_INFO_LIST = {
 		"WS_WEAPONREFINE",
 		SkillName = "Weapon Refine",
 		MaxLv= 10,
-		SpAmount = { 30, 30, 30, 30, 30, 30, 30, 30, 30, 30 },
+		SpAmount = { 30, 30, 30, 30, 30 },
 		bSeperateLv = false,
-		AttackRange = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+		AttackRange = { 1, 1, 1, 1, 1 },
 		_NeedSkillList = {
-			{ SKID.BS_WEAPONRESEARCH,10 }
+			{ SKID.BS_WEAPONPERFECT,5 }
 		}
 	},
 	[SKID.CR_SLIMPITCHER] = {
@@ -4008,7 +4001,7 @@ SKILL_INFO_LIST = {
 		bSeperateLv = false,
 		AttackRange = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 		_NeedSkillList = {
-			{ SKID.MC_MAMMONITE,10 },
+			{ SKID.MC_CARTREVOLUTION,10 },
 			{ SKID.BS_HAMMERFALL,5 },
 			{ SKID.WS_CARTBOOST,1 }
 		}
