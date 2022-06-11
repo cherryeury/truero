@@ -1508,6 +1508,7 @@ int skill_additional_effect(struct block_list* src, struct block_list *bl, uint1
 
 	case NPC_DARKCROSS:
 	case CR_HOLYCROSS:
+	case AL_HOLYLIGHT:
 		sc_start(src,bl,SC_BLIND,3*skill_lv,skill_lv,skill_get_time2(skill_id,skill_lv));
 		break;
 
@@ -7147,7 +7148,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 
 	case AL_CRUCIS:
 		if (flag&1)
-			sc_start(src,bl,type, 23+skill_lv*4 +status_get_lv(src) -status_get_lv(bl), skill_lv,skill_get_time(skill_id,skill_lv));
+			sc_start(src,bl,type, 96+skill_lv*4 +status_get_lv(src) -status_get_lv(bl), skill_lv,skill_get_time(skill_id,skill_lv));
 		else {
 			map_foreachinallrange(skill_area_sub, src, skill_get_splash(skill_id, skill_lv), BL_CHAR,
 				src, skill_id, skill_lv, tick, flag|BCT_ENEMY|1, skill_castend_nodamage_id);
@@ -7469,7 +7470,6 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 	case PR_LEXAETERNA:
 #ifndef RENEWAL
 	case PR_IMPOSITIO:
-	case PR_SUFFRAGIUM:
 #endif
 	case LK_BERSERK:
 	case MS_BERSERK:
@@ -8356,8 +8356,8 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 		status_damage(src, src, sstatus->max_hp,0,0,1, skill_id);
 		break;
 	case AL_ANGELUS:
-#ifdef RENEWAL
 	case PR_SUFFRAGIUM:
+#ifdef RENEWAL
 	case PR_IMPOSITIO:
 #endif
 	case PR_MAGNIFICAT:
@@ -16744,11 +16744,7 @@ bool skill_check_condition_castbegin(struct map_session_data* sd, uint16 skill_i
 			}
 			break;
 		case ASC_EDP:
-#ifdef RENEWAL
 			if (sd->weapontype1 == W_FIST && battle_config.switch_remove_edp&2) {
-#else
-			if (sd->weapontype1 == W_FIST && battle_config.switch_remove_edp&1) {
-#endif
 				clif_skill_fail(sd,skill_id,USESKILL_FAIL_THIS_WEAPON,0);
 				return false;
 			}

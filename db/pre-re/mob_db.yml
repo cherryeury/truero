@@ -2348,8 +2348,8 @@ Body:
     Drops:
       - Item: Grasshopper's_Leg
         Rate: 9000
-      - Item: Guitar_Of_Vast_Land
-        Rate: 10
+      - Item: Gold_Coin
+        Rate: 20
       - Item: Green_Feeler
         Rate: 4
       - Item: Javelin_
@@ -2637,8 +2637,8 @@ Body:
         Rate: 20
       - Item: Shell
         Rate: 3000
-      - Item: Guitar_Of_Passion
-        Rate: 10
+      - Item: Gold_Coin
+        Rate: 100
       - Item: Metaller_Card
         Rate: 1
         StealProtected: true
@@ -3976,8 +3976,8 @@ Body:
         Rate: 1000
       - Item: Center_Potion
         Rate: 700
-      - Item: Guitar_Of_Gentle_Breeze
-        Rate: 10
+      - Item: Gold_Coin
+        Rate: 100
       - Item: Vocal_Card
         Rate: 1
         StealProtected: true
@@ -6748,12 +6748,12 @@ Body:
     Drops:
       - Item: Slender_Snake
         Rate: 5335
-      - Item: Whip_Of_Red_Flame
-        Rate: 250
+      - Item: Gold_Coin
+        Rate: 100
       - Item: Animal_Blood
         Rate: 200
-      - Item: Sea_Witch_Foot
-        Rate: 20
+      - Item: Gold_Coin
+        Rate: 100
       - Item: Scarlet_Jewel
         Rate: 250
       - Item: Turtle_Shell
@@ -9066,7 +9066,7 @@ Body:
         Rate: 8
       - Item: Earring_
         Rate: 1
-      - Item: Queen's_Whip
+      - Item: Gold_Coin
         Rate: 100
       - Item: Masquerade
         Rate: 3
@@ -9158,7 +9158,7 @@ Body:
         Rate: 1800
       - Item: Oridecon
         Rate: 150
-      - Item: Electric_Wire
+      - Item: Gold_Coin
         Rate: 100
       - Item: Phendark_Card
         Rate: 1
@@ -9764,8 +9764,8 @@ Body:
         Rate: 5335
       - Item: White_Herb
         Rate: 1800
-      - Item: Jump_Rope
-        Rate: 10
+      - Item: Gold_Coin
+        Rate: 100
       - Item: Oridecon_Stone
         Rate: 115
       - Item: Great_Nature
@@ -11487,8 +11487,8 @@ Body:
         Rate: 1000
       - Item: Blue_Herb
         Rate: 230
-      - Item: Whip_Of_Ice_Piece
-        Rate: 10
+      - Item: Gold_Coin
+        Rate: 100
       - Item: Grape
         Rate: 250
       - Item: Elunium_Stone
@@ -16193,8 +16193,8 @@ Body:
         Rate: 1000
       - Item: Water_Of_Darkness
         Rate: 1000
-      - Item: Carrot_Whip
-        Rate: 20
+      - Item: Gold_Coin
+        Rate: 100
       - Item: Fake_Angel_Card
         Rate: 1
         StealProtected: true
@@ -17042,13 +17042,13 @@ Body:
         Rate: 50
       - Item: Stuffed_Doll
         Rate: 1200
-      - Item: Base_Guitar
-        Rate: 50
+      - Item: Gold_Coin
+        Rate: 100
       - Item: Royal_Jelly
         Rate: 1400
       - Item: Water_Of_Darkness
         Rate: 1000
-      - Item: Violin_
+      - Item: Gold_Coin
         Rate: 500
       - Item: Violy_Card
         Rate: 1
@@ -17729,8 +17729,8 @@ Body:
         Rate: 2300
       - Item: Ment
         Rate: 2
-      - Item: Guitar_Of_Blue_Solo
-        Rate: 10
+      - Item: Gold_Coin
+        Rate: 100
       - Item: Jitte_
         Rate: 5
       - Item: Kapha_Card
@@ -17785,8 +17785,8 @@ Body:
         Rate: 5500
       - Item: Waghnakh_
         Rate: 3
-      - Item: Lariat
-        Rate: 1
+      - Item: Gold_Coin
+        Rate: 100
       - Item: Blood_Butterfly_Card
         Rate: 1
         StealProtected: true
@@ -17975,8 +17975,8 @@ Body:
         Rate: 4800
       - Item: Sweet_Potato
         Rate: 4800
-      - Item: Rope_
-        Rate: 1
+      - Item: Gold_Coin
+        Rate: 100
       - Item: Strawberry
         Rate: 1000
       - Item: Wild_Ginseng_Card
@@ -18072,14 +18072,14 @@ Body:
         Rate: 1380
       - Item: Oridecon
         Rate: 10
-      - Item: Mandolin_
-        Rate: 4
-      - Item: Lute_
-        Rate: 1
+      - Item: Gold_Coin
+        Rate: 100
+      - Item: Gold_Coin
+        Rate: 100
       - Item: Holy_Scroll_1_5
         Rate: 100
-      - Item: Oriental_Lute
-        Rate: 10
+      - Item: Gold_Coin
+        Rate: 100
       - Item: Wicked_Nymph_Card
         Rate: 1
         StealProtected: true
@@ -20201,10 +20201,10 @@ Body:
         Rate: 1000
       - Item: Browny_Root
         Rate: 3000
-      - Item: Rope_
-        Rate: 80
-      - Item: Chemeti
-        Rate: 1
+      - Item: Gold_Coin
+        Rate: 40
+      - Item: Gold_Coin
+        Rate: 100
       - Item: Centimental_Leaf
         Rate: 10
       - Item: Sharp_Leaf
@@ -20483,10 +20483,10 @@ Body:
         Rate: 3880
       - Item: Great_Leaf
         Rate: 500
-      - Item: Rante_
-        Rate: 1
-      - Item: Bladed_Whip
-        Rate: 1
+      - Item: Gold_Coin
+        Rate: 100
+      - Item: Gold_Coin
+        Rate: 100
       - Item: Shoot
         Rate: 500
       - Item: Parasite_Card
@@ -27981,8 +27981,8 @@ Body:
         Rate: 50
       - Item: Dark_Red_Jewel
         Rate: 1000
-      - Item: Harp_
-        Rate: 50
+      - Item: Gold_Coin
+        Rate: 100
       - Item: Harp
         Rate: 100
       - Item: Cursed_Seal
@@ -32651,8 +32651,8 @@ Body:
         Rate: 100
       - Item: Lesser_Elemental_Ring
         Rate: 1
-      - Item: Berserk_Guitar
-        Rate: 50
+      - Item: Gold_Coin
+        Rate: 100
       - Item: Ring_
         Rate: 1
       - Item: Meteo_Plate_Armor
@@ -32900,8 +32900,8 @@ Body:
         Rate: 2500
       - Item: Heart_Breaker
         Rate: 10
-      - Item: Electric_Eel
-        Rate: 25
+      - Item: Gold_Coin
+        Rate: 150
       - Item: Flaming_Ice
         Rate: 20
       - Item: Imp_Card
@@ -33714,7 +33714,7 @@ Body:
         Rate: 300
       - Item: Four_Leaf_Clover
         Rate: 3
-      - Item: Whip_Of_Earth
+      - Item: Gold_Coin
         Rate: 10
       - Item: Mandragora_Card
         Rate: 1
@@ -37953,8 +37953,8 @@ Body:
     Drops:
       - Item: Lunakaligo
         Rate: 20
-      - Item: Cello
-        Rate: 10
+      - Item: Gold_Coin
+        Rate: 100
       - Item: Fur
         Rate: 4000
       - Item: Peaked_Hat
@@ -38051,10 +38051,10 @@ Body:
     Drops:
       - Item: Mandragora_Cap
         Rate: 1
-      - Item: Stem_Of_Nepenthes
-        Rate: 1
-      - Item: Harp_Of_Nepenthes
-        Rate: 1
+      - Item: Gold_Coin
+        Rate: 100
+      - Item: Gold_Coin
+        Rate: 100
       - Item: Nepenthes_Bow
         Rate: 1
       - Item: Strong_Bine
@@ -38385,8 +38385,8 @@ Body:
     Drops:
       - Item: Pinguicula_Corsage
         Rate: 1
-      - Item: Whip_Of_Balance
-        Rate: 10
+      - Item: Gold_Coin
+        Rate: 100
       - Item: Centimental_Leaf
         Rate: 10
       - Item: Sharp_Leaf

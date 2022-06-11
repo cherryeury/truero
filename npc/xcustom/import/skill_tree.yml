@@ -121,6 +121,13 @@ Body:
       Swordman: true
       Knight: true
     Tree:
+      - Name: CR_GRANDCROSS
+        MaxLevel: 10
+        Requires:
+          - Name: CR_HOLYCROSS
+            Level: 6
+          - Name: CR_TRUST
+            Level: 10    
       - Name: PA_PRESSURE
         MaxLevel: 5
         Requires:
@@ -171,7 +178,7 @@ Body:
       - Name: WZ_JUPITEL
         MaxLevel: 10
         Requires:
-          - Name: MG_ENERGYCOAT
+          - Name: SA_MAGICROD
             Level: 1
           - Name: MG_LIGHTNINGBOLT
             Level: 1
@@ -270,7 +277,7 @@ Body:
       - Name: HW_NAPALMVULCAN
         MaxLevel: 5
         Requires:
-          - Name: MG_ENERGYCOAT
+          - Name: MG_SOULSTRIKE
             Level: 5
       - Name: HW_GRAVITATION
         MaxLevel: 5
@@ -281,3 +288,106 @@ Body:
             Level: 10
           - Name: WZ_HEAVENDRIVE
             Level: 1
+  - Job: Monk
+    Inherit:
+      Novice: true
+      Acolyte: true
+    Tree:
+      - Name: MG_SRECOVERY
+        MaxLevel: 10
+      - Name: AL_RUWACH
+        MaxLevel: 1
+      - Name: AL_ANGELUS
+        MaxLevel: 10
+      - Name: AL_PNEUMA
+        MaxLevel: 10
+      - Name: AL_HOLYWATER
+        MaxLevel: 1
+      - Name: MG_SAFETYWALL
+        MaxLevel: 10
+        Requires:
+          - Name: PR_ASPERSIO
+            Level: 4
+          - Name: PR_SANCTUARY
+            Level: 3
+      - Name: ALL_RESURRECTION
+        MaxLevel: 4
+        Requires:
+          - Name: MG_SRECOVERY
+            Level: 4
+      - Name: PR_MACEMASTERY
+        MaxLevel: 10
+      - Name: PR_SUFFRAGIUM
+        MaxLevel: 3
+      - Name: PR_ASPERSIO
+        MaxLevel: 5
+        Requires:
+          - Name: AL_HOLYWATER
+            Level: 1
+      - Name: PR_SANCTUARY
+        MaxLevel: 10
+        Requires:
+          - Name: AL_HEAL
+            Level: 1
+      - Name: PR_KYRIE
+        MaxLevel: 10
+        Requires:
+          - Name: AL_ANGELUS
+            Level: 2
+      - Name: PR_GLORIA
+        MaxLevel: 5
+        Requires:
+          - Name: PR_KYRIE
+            Level: 4
+      - Name: PR_LEXDIVINA
+        MaxLevel: 10
+        Requires:
+          - Name: AL_RUWACH
+            Level: 1
+      - Name: PR_TURNUNDEAD
+        MaxLevel: 10
+        Requires:
+          - Name: ALL_RESURRECTION
+            Level: 1
+          - Name: PR_LEXDIVINA
+            Level: 3
+      - Name: PR_MAGNUS
+        MaxLevel: 10
+        Requires:
+          - Name: MG_SAFETYWALL
+            Level: 1
+          - Name: PR_TURNUNDEAD
+            Level: 3
+      - Name: PR_REDEMPTIO
+        MaxLevel: 1
+  - Job: Champion
+    Inherit:
+      Novice: true
+      Acolyte: true
+      Monk: true
+    Tree:
+      - Name: HP_ASSUMPTIO
+        MaxLevel: 5
+        Requires:
+          - Name: AL_ANGELUS
+            Level: 1
+          - Name: MG_SRECOVERY
+            Level: 3
+      - Name: HP_BASILICA
+        MaxLevel: 5
+        Requires:
+          - Name: PR_GLORIA
+            Level: 2
+          - Name: MG_SRECOVERY
+            Level: 1
+          - Name: PR_KYRIE
+            Level: 3
+      - Name: HP_MEDITATIO
+        MaxLevel: 10
+        Requires:
+          - Name: PR_ASPERSIO
+            Level: 3
+          - Name: MG_SRECOVERY
+            Level: 5
+          - Name: PR_LEXDIVINA
+            Level: 5

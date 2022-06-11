@@ -89,15 +89,7 @@ Body:
     Inherit:
       Novice: true
     Tree:
-      - Name: MG_SRECOVERY
-        MaxLevel: 10
-      - Name: MG_SIGHT
-        MaxLevel: 1
-  - Job: Mage
-    Inherit:
-      Novice: true
-    Tree:
-      - Name: MG_SRECOVERY
+      - Name: SA_MAGICROD
         MaxLevel: 10
       - Name: MG_SIGHT
         MaxLevel: 1
@@ -113,8 +105,8 @@ Body:
       - Name: MG_SOULSTRIKE
         MaxLevel: 10
         Requires:
-          - Name: MG_ENERGYCOAT
-            Level: 4
+          - Name: MG_SIGHT
+            Level: 1
       - Name: MG_COLDBOLT
         MaxLevel: 10
       - Name: MG_FROSTDIVER
@@ -146,7 +138,7 @@ Body:
           - Name: MG_LIGHTNINGBOLT
             Level: 4
       - Name: MG_ENERGYCOAT
-        MaxLevel: 5
+        MaxLevel: 1
   - Job: Archer
     Inherit:
       Novice: true
@@ -172,26 +164,19 @@ Body:
             Level: 5
       - Name: AC_MAKINGARROW
         MaxLevel: 1
-      - Name: AC_CHARGEARROW
-        MaxLevel: 1
+#      - Name: AC_CHARGEARROW
+#        MaxLevel: 1
   - Job: Acolyte
     Inherit:
       Novice: true
     Tree:
-      - Name: AL_DP
-        MaxLevel: 5
-      - Name: AL_DEMONBANE
-        MaxLevel: 5
-        Requires:
-          - Name: AL_DP
-            Level: 3
-      - Name: AL_RUWACH
-        MaxLevel: 1
-      - Name: AL_PNEUMA
-        MaxLevel: 3
-        Requires:
-          - Name: AL_DEMONBANE
-            Level: 5
+#      - Name: AL_RUWACH
+#        MaxLevel: 1
+#      - Name: AL_PNEUMA
+#        MaxLevel: 1
+#        Requires:
+#          - Name: AL_ANGELUS
+#            Level: 10
 #      - Name: AL_TELEPORT
 #        MaxLevel: 2
 #        Requires:
@@ -214,23 +199,20 @@ Body:
 #        Requires:
 #          - Name: AL_INCAGI
 #            Level: 1
-      - Name: AL_HOLYWATER
+#      - Name: AL_HOLYWATER
+#        MaxLevel: 1
+      - Name: AL_CRUCIS
         MaxLevel: 1
-#      - Name: AL_CRUCIS
-#        MaxLevel: 10
-#        Requires:
-#          - Name: AL_DEMONBANE
-#            Level: 3
 #      - Name: AL_ANGELUS
 #        MaxLevel: 10
 #        Requires:
-#          - Name: AL_DP
+#          - Name: AL_HEAL
 #            Level: 3
       - Name: AL_BLESSING
         MaxLevel: 10
         Requires:
-          - Name: AL_DP
-            Level: 5
+          - Name: AL_HEAL
+            Level: 3
       - Name: AL_CURE
         MaxLevel: 1
         Requires:
@@ -238,6 +220,9 @@ Body:
             Level: 2
       - Name: AL_HOLYLIGHT
         MaxLevel: 10
+        Requires:
+          - Name: AL_HEAL
+            Level: 3
   - Job: Merchant
     Inherit:
       Novice: true
@@ -383,6 +368,14 @@ Body:
     Tree:
       - Name: MG_SRECOVERY
         MaxLevel: 10
+      - Name: AL_RUWACH
+        MaxLevel: 1
+      - Name: AL_ANGELUS
+        MaxLevel: 10
+      - Name: AL_PNEUMA
+        MaxLevel: 10
+      - Name: AL_HOLYWATER
+        MaxLevel: 1
       - Name: MG_SAFETYWALL
         MaxLevel: 10
         Requires:
@@ -393,56 +386,32 @@ Body:
       - Name: ALL_RESURRECTION
         MaxLevel: 4
         Requires:
-          - Name: PR_STRECOVERY
-            Level: 1
           - Name: MG_SRECOVERY
             Level: 4
       - Name: PR_MACEMASTERY
         MaxLevel: 10
-      - Name: PR_IMPOSITIO
-        MaxLevel: 5
       - Name: PR_SUFFRAGIUM
         MaxLevel: 3
-        Requires:
-          - Name: PR_IMPOSITIO
-            Level: 2
       - Name: PR_ASPERSIO
         MaxLevel: 5
         Requires:
           - Name: AL_HOLYWATER
             Level: 1
-          - Name: PR_IMPOSITIO
-            Level: 3
-      - Name: PR_BENEDICTIO
-        MaxLevel: 5
-        Requires:
-          - Name: PR_GLORIA
-            Level: 3
-          - Name: PR_ASPERSIO
-            Level: 5
       - Name: PR_SANCTUARY
         MaxLevel: 10
         Requires:
           - Name: AL_HEAL
             Level: 1
-      - Name: PR_SLOWPOISON
-        MaxLevel: 4
-      - Name: PR_STRECOVERY
-        MaxLevel: 1
       - Name: PR_KYRIE
         MaxLevel: 10
         Requires:
           - Name: AL_ANGELUS
             Level: 2
-      - Name: PR_MAGNIFICAT
-        MaxLevel: 5
       - Name: PR_GLORIA
         MaxLevel: 5
         Requires:
           - Name: PR_KYRIE
             Level: 4
-          - Name: PR_MAGNIFICAT
-            Level: 3
       - Name: PR_LEXDIVINA
         MaxLevel: 10
         Requires:
@@ -455,17 +424,10 @@ Body:
             Level: 1
           - Name: PR_LEXDIVINA
             Level: 3
-      - Name: PR_LEXAETERNA
-        MaxLevel: 1
-        Requires:
-          - Name: PR_LEXDIVINA
-            Level: 5
       - Name: PR_MAGNUS
         MaxLevel: 10
         Requires:
           - Name: MG_SAFETYWALL
-            Level: 1
-          - Name: PR_LEXAETERNA
             Level: 1
           - Name: PR_TURNUNDEAD
             Level: 3
@@ -672,48 +634,22 @@ Body:
       Archer: true
     Tree:
       - Name: HT_SKIDTRAP
-        MaxLevel: 5
+        MaxLevel: 1
       - Name: HT_LANDMINE
         MaxLevel: 5
-      - Name: HT_ANKLESNARE
-        MaxLevel: 5
         Requires:
           - Name: HT_SKIDTRAP
-            Level: 1
-      - Name: HT_SHOCKWAVE
-        MaxLevel: 5
-        Requires:
-          - Name: HT_ANKLESNARE
-            Level: 1
-      - Name: HT_SANDMAN
-        MaxLevel: 5
-        Requires:
-          - Name: HT_FLASHER
-            Level: 1
-      - Name: HT_FLASHER
-        MaxLevel: 5
-        Requires:
-          - Name: HT_SKIDTRAP
-            Level: 1
-      - Name: HT_FREEZINGTRAP
-        MaxLevel: 5
-        Requires:
-          - Name: HT_FLASHER
-            Level: 1
+            Level: 1        
       - Name: HT_BLASTMINE
         MaxLevel: 5
         Requires:
+          - Name: HT_SKIDTRAP
+            Level: 1        
           - Name: HT_LANDMINE
-            Level: 1
-          - Name: HT_SANDMAN
-            Level: 1
-          - Name: HT_FREEZINGTRAP
             Level: 1
       - Name: HT_CLAYMORETRAP
         MaxLevel: 5
         Requires:
-          - Name: HT_SHOCKWAVE
-            Level: 1
           - Name: HT_BLASTMINE
             Level: 1
       - Name: HT_REMOVETRAP
@@ -721,15 +657,10 @@ Body:
         Requires:
           - Name: HT_LANDMINE
             Level: 1
-      - Name: HT_TALKIEBOX
-        MaxLevel: 1
-        Requires:
-          - Name: HT_SHOCKWAVE
-            Level: 1
-          - Name: HT_REMOVETRAP
-            Level: 1
       - Name: HT_BEASTBANE
         MaxLevel: 10
+      - Name: AC_CONCENTRATION
+        MaxLevel: 10  
       - Name: HT_FALCON
         MaxLevel: 1
         Requires:
@@ -761,11 +692,6 @@ Body:
             Level: 1
       - Name: HT_PHANTASMIC
         MaxLevel: 1
-      - Name: HT_POWER
-        MaxLevel: 1
-        Requires:
-          - Name: AC_DOUBLE
-            Level: 10
   - Job: Assassin
     Inherit:
       Novice: true
@@ -891,13 +817,6 @@ Body:
         Requires:
           - Name: CR_TRUST
             Level: 7
-      - Name: CR_GRANDCROSS
-        MaxLevel: 10
-        Requires:
-          - Name: CR_HOLYCROSS
-            Level: 6
-          - Name: CR_TRUST
-            Level: 10
       - Name: CR_DEVOTION
         MaxLevel: 5
         Requires:
@@ -931,57 +850,30 @@ Body:
     Tree:
       - Name: MO_IRONHAND
         MaxLevel: 10
-        Requires:
-          - Name: AL_DEMONBANE
-            Level: 10
-          - Name: AL_DP
-            Level: 10
-      - Name: MO_SPIRITSRECOVERY
-        MaxLevel: 5
-        Requires:
-          - Name: MO_BLADESTOP
-            Level: 2
       - Name: MO_CALLSPIRITS
         MaxLevel: 5
         Requires:
           - Name: MO_IRONHAND
             Level: 2
-      - Name: MO_ABSORBSPIRITS
-        MaxLevel: 1
-        Requires:
-          - Name: MO_CALLSPIRITS
-            Level: 5
       - Name: MO_TRIPLEATTACK
         MaxLevel: 10
         Requires:
-          - Name: MO_DODGE
+          - Name: MO_BLADESTOP
             Level: 5
       - Name: MO_BODYRELOCATION
         MaxLevel: 1
         Requires:
           - Name: MO_EXTREMITYFIST
             Level: 3
-          - Name: MO_SPIRITSRECOVERY
+          - Name: MG_SRECOVERY
             Level: 2
           - Name: MO_STEELBODY
             Level: 3
-      - Name: MO_DODGE
-        MaxLevel: 10
-        Requires:
-          - Name: MO_IRONHAND
-            Level: 5
-          - Name: MO_CALLSPIRITS
-            Level: 5
       - Name: MO_INVESTIGATE
         MaxLevel: 5
         Requires:
           - Name: MO_CALLSPIRITS
             Level: 5
-      - Name: MO_FINGEROFFENSIVE
-        MaxLevel: 5
-        Requires:
-          - Name: MO_INVESTIGATE
-            Level: 3
       - Name: MO_STEELBODY
         MaxLevel: 5
         Requires:
@@ -990,19 +882,19 @@ Body:
       - Name: MO_BLADESTOP
         MaxLevel: 5
         Requires:
-          - Name: MO_DODGE
+          - Name: MO_IRONHAND
             Level: 5
       - Name: MO_EXPLOSIONSPIRITS
         MaxLevel: 5
         Requires:
-          - Name: MO_ABSORBSPIRITS
+          - Name: MO_CALLSPIRITS
             Level: 1
       - Name: MO_EXTREMITYFIST
         MaxLevel: 5
         Requires:
           - Name: MO_EXPLOSIONSPIRITS
             Level: 3
-          - Name: MO_FINGEROFFENSIVE
+          - Name: MO_INVESTIGATE
             Level: 3
       - Name: MO_CHAINCOMBO
         MaxLevel: 5
@@ -1607,13 +1499,13 @@ Body:
         Requires:
           - Name: MG_LIGHTNINGBOLT
             Level: 4
-      - Name: AL_DP
-        MaxLevel: 10
-      - Name: AL_DEMONBANE
-        MaxLevel: 10
-        Requires:
-          - Name: AL_DP
-            Level: 3
+#      - Name: AL_DP
+#        MaxLevel: 10
+#      - Name: AL_DEMONBANE
+#        MaxLevel: 10
+#        Requires:
+#          - Name: AL_DP
+#            Level: 3
       - Name: AL_RUWACH
         MaxLevel: 1
       - Name: AL_PNEUMA
@@ -1621,16 +1513,16 @@ Body:
         Requires:
           - Name: AL_WARP
             Level: 4
-      - Name: AL_TELEPORT
-        MaxLevel: 2
-        Requires:
-          - Name: AL_RUWACH
-            Level: 1
-      - Name: AL_WARP
-        MaxLevel: 4
-        Requires:
-          - Name: AL_TELEPORT
-            Level: 2
+#      - Name: AL_TELEPORT
+#        MaxLevel: 2
+#        Requires:
+#          - Name: AL_RUWACH
+#            Level: 1
+#      - Name: AL_WARP
+#        MaxLevel: 4
+#        Requires:
+#          - Name: AL_TELEPORT
+#            Level: 2
       - Name: AL_HEAL
         MaxLevel: 10
       - Name: AL_INCAGI
@@ -1698,7 +1590,7 @@ Body:
         Requires:
           - Name: AC_OWL
             Level: 3
-      - Name: AC_CONCENTRATION
+      - Name: AC_CHARGEARROW
         MaxLevel: 10
         Requires:
           - Name: AC_VULTURE
@@ -2078,19 +1970,12 @@ Body:
       Acolyte: true
       Priest: true
     Tree:
-      - Name: PR_SLOWPOISON
-        MaxLevel: 4
-        Requires:
-          - Name: PR_STRECOVERY
-            Level: 1
       - Name: HP_ASSUMPTIO
         MaxLevel: 5
         Requires:
           - Name: AL_ANGELUS
             Level: 1
           - Name: MG_SRECOVERY
-            Level: 3
-          - Name: PR_IMPOSITIO
             Level: 3
       - Name: HP_BASILICA
         MaxLevel: 5
@@ -2110,13 +1995,6 @@ Body:
             Level: 5
           - Name: PR_LEXDIVINA
             Level: 5
-      - Name: HP_MANARECHARGE
-        MaxLevel: 5
-        Requires:
-          - Name: PR_MACEMASTERY
-            Level: 10
-          - Name: AL_DEMONBANE
-            Level: 10
   - Job: High_Wizard
     Inherit:
       Novice: true
@@ -2126,14 +2004,14 @@ Body:
       - Name: HW_SOULDRAIN
         MaxLevel: 10
         Requires:
-          - Name: MG_SRECOVERY
+          - Name: SA_MAGICROD
             Level: 5
           - Name: MG_SOULSTRIKE
             Level: 7
       - Name: HW_MAGICCRASHER
         MaxLevel: 1
         Requires:
-          - Name: MG_SRECOVERY
+          - Name: SA_MAGICROD
             Level: 1
       - Name: HW_MAGICPOWER
         MaxLevel: 10
@@ -2238,6 +2116,8 @@ Body:
       Archer: true
       Hunter: true
     Tree:
+      - Name: HT_FLASHER
+        MaxLevel: 10    
       - Name: SN_SIGHT
         MaxLevel: 10
         Requires:
@@ -2401,10 +2281,6 @@ Body:
       - Name: CH_SOULCOLLECT
         MaxLevel: 1
         Requires:
-          - Name: MO_CALLSPIRITS
-            Level: 5
-          - Name: MO_ABSORBSPIRITS
-            Level: 1
           - Name: MO_EXPLOSIONSPIRITS
             Level: 5
   - Job: Professor
